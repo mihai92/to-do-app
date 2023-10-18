@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import MediumButton from '../MediumButton';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -8,7 +10,9 @@ const Login = () => {
     // logica buton login
     console.log('Login clicked');
   };
-
+const navigateToRegister = () => {
+navigate('/register');
+}
   return (
     <div>
       <h2>Login</h2>
@@ -28,8 +32,10 @@ const Login = () => {
         />
         <br />
         <MediumButton
-        onClick={console.log("merge?")} label={"Login"}>
+        onClick={handleLogin}
+         label={"Login"}>
         </MediumButton>
+        <MediumButton label="Dont have an account?" onClick={navigateToRegister}/>
       </form>
     </div>
   );
