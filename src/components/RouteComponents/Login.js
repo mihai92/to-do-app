@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import MediumButton from '../MediumButton';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,9 +27,9 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
+        <MediumButton
+        onClick={console.log("merge?")} label={"Login"}>
+        </MediumButton>
       </form>
     </div>
   );

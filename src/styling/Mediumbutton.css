@@ -1,0 +1,8 @@
+.medium-button {
+    margin: 5px;
+    background-color: beige;
+    border-radius: 3px;
+    width: 75px;
+    height: fit-content;
+    font-size: medium;
+  }
