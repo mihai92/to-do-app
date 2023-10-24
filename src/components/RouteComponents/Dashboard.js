@@ -1,10 +1,11 @@
 import React from 'react';
+import MenuBar from '../MenuBar';
 
 const Dashboard = () => {
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <MenuBar></MenuBar>
     </div>
   );
 };

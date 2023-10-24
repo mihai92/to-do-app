@@ -1,0 +1,10 @@
+.menu-button {
+    height: 42px;
+    width: 155px;
+    font-weight: bold;
+    color: aliceblue;
+    background-color: blueviolet;
+    border: 4px;
+    border-color: black;
+    text-align: center;
+}
