@@ -1,12 +1,18 @@
 import React from "react";
-
+import '../styling/MenuBar.css'
+import MenuButton from "./MenuButton";
 
 const MenuBar = () => {
     return(
         <div className="task-styling">
-            <div className="xdd">
-
+            <div className="profile">
+                Profil
             </div>
+            <MenuButton label="Personal"></MenuButton>
+            <MenuButton label="Groups"></MenuButton>
+            <MenuButton label="Assigned Tasks"></MenuButton>
+            <MenuButton label="Projects"></MenuButton>
+            <MenuButton cclass="help" label="help"/>
         </div>
     );
 };
