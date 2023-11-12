@@ -1,0 +1,11 @@
+.medium-button {
+    margin: 2px;
+    background-color: beige;
+    border-radius: 5px;
+    width: fit-content;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-left: 15px;
+    height: fit-content;
+    font-size: medium;
+  }
