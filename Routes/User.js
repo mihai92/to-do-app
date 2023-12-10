@@ -1,4 +1,4 @@
-const Data=require("../Data/Data");
+const Data=require("../Data/Data")
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -7,27 +7,25 @@ const db=Data.getInstance();
 require('dotenv').config()
 
 
-router.post("/Login", async (req,res)=>{
+router.post("/login", async (req,res)=>{
     const {Email,Password}=req.body;
     try{
-        const [query]=await db.execute("SELECT * FROM Users WHERE Email=? & Password=?",[Email,Password])
+        const [query]=await db.execute("SELECT * FROM Users WHERE Email=?",[Email])
         
         if(query.length==0){
-            res.status(401).json({Mesaj:"Credidentiale invalide"});
+          return  res.status(402).json({Mesaj:"Credidentiale invalide"});
         }
 
         const potrivire = await bcrypt.compare(Password, query[0].Password);
         if (!potrivire) {
-            return res.status(401).json({ message: "Credidentiale invalide" });
+          return  res.status(401).json({ message: "Credidentiale invalide" });
         }
 
         const token=jwt.sign({ id: query[0].Id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "24h" })
-        res.status(200).json(token);
-        
-
+        res.status(200).json({token});
     }
     catch(err){
-        res.status(500).json(err);
+       return res.status(500).json(err);
     }
 });
 
