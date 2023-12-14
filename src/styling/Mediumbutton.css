@@ -2,10 +2,10 @@
     margin: 2px;
     background-color: beige;
     border-radius: 5px;
-    width: fit-content;
+    width: inherit;
     margin-top: 10px;
-    padding-left: 15px;
-    padding-left: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
     height: fit-content;
     font-size: medium;
   }

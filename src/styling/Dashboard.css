@@ -1,0 +1,38 @@
+/* MainContent.css */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    overflow: auto;
+    width: 75vw; /* Control the max width of the main content area */
+    min-height: 100vh;
+    margin: 0 auto; /* This will center the main content if it's less than the max-width */
+  }
+  
+  .column {
+    background-color: #6a0dad;
+    padding: 8px;
+    width: 100%;
+    max-width: 20vw;
+    min-height: 200px;
+    border-radius: 4px;
+  }
+  
+  .task {
+    background-color: #fff;
+    padding: 6px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+    }
+  }
+
+.dashboard {
+    display: flex;
+}

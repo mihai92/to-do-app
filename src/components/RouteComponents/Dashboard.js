@@ -1,23 +1,15 @@
 import React from 'react';
 import MenuBar from '../MenuBar';
-import Groupname from '../GroupName';
+import MainContent from '../MainContent';
+import '../../styling/Dashboard.css'
 import GroupMembers from '../GroupMembers';
-import Todo from '../Todo';
-import InProgress from '../InProgress';
-import Done from '../Done';
-import InReview from '../InReview';
 
 const Dashboard = () => {
 
   return (
-    <div>
-      <Groupname></Groupname>
+    <div className='dashboard'>
       <GroupMembers></GroupMembers>
-      
-      <Todo></Todo>
-      <InProgress></InProgress>
-      <Done></Done>
-      <InReview></InReview>
+      <MainContent></MainContent>
       <MenuBar></MenuBar>
       
     </div>

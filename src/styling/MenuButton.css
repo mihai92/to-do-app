@@ -4,14 +4,15 @@
     align-items: center;
     justify-content: center;
     height: 42px;
-    width: 165px;
+    width: inherit;
     font-weight: bold;
     color: aliceblue;
     background-color: rgb(82,19,121);
     text-align: center;
     border: 1px solid black;
+    border-radius: 2px;
     margin-top: 20px;
-    cursor: crosshair;
+    cursor: pointer;
 }
 
 .Help {
