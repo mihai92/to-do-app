@@ -1,10 +1,18 @@
 .medium-button {
-    margin: 2px;
-    background-color: beige;
-    border-radius: 5px;
-    width: fit-content;
-    margin-top: 10px;
-    padding-left: 15px;
-    height: fit-content;
-    font-size: medium;
+  margin: 2px;
+  margin-top: 2vh;
+  background-color: #ffffff; /* Green */
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 1.5vh 5.5vh;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+  border-width: 20px;
+  }
+
+.medium-button:hover {
+    background-color: rgba(255, 255, 255, 0.527);
   }

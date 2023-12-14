@@ -1,9 +1,9 @@
 import React from 'react';
 import '../styling/Mediumbutton.css'
 
-const MediumButton = ({ onClick, label }) => {
+const MediumButton = ({ onClick, label, id}) => {
   return (
-    <button className="medium-button" onClick={onClick}>
+    <button id={id} className="medium-button" onClick={onClick}>
       {label}
     </button>
   );

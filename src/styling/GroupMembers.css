@@ -1,0 +1,53 @@
+.GroupMembers {
+    float: right; 
+    height: 100vh;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color:rgb(50, 1, 81);
+    border: 1px solid black;
+    margin-left:100px;
+    height: 100vh;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgb(50, 1, 81);
+    border: 1px solid black;
+}
+.GroupMembersTop {
+
+    height: 122px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+    vertical-align: top;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    color: aliceblue;
+    font-weight: bold;
+    background-color: rgb(50, 1, 81);
+}
+.AddNewMember {
+    height: 122px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+    vertical-align: top;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    color: aliceblue;
+    font-weight: bold;
+    margin-top: auto;
+    margin-bottom: 0px;
+    background-color: rgb(50, 1, 81);
+}

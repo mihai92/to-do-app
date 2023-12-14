@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import MediumButton from '../MediumButton';
 import { useNavigate } from 'react-router-dom';
+import '../../styling/Login.css'
+
+
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -14,28 +18,33 @@ const navigateToRegister = () => {
 navigate('/register');
 }
   return (
-    <div>
-      <h2>Login</h2>
+    <div className='login'>
+      <h2 className='label'>To Do List</h2>
+      
       <form>
-        <label>Email:</label>
+        
         <input
+          className='input'
           type="email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
-        <label>Password:</label>
+       
         <input
+          className='input'
           type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <MediumButton
+        <MediumButton id='loginbutton'
         onClick={handleLogin}
          label={"Login"}>
         </MediumButton>
-        <MediumButton label="Dont have an account?" onClick={navigateToRegister}/>
+        <p className='createaccount'><a  onClick={navigateToRegister} >Dont have an account yet?</a></p>
       </form>
     </div>
   );
