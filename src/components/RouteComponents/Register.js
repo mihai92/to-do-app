@@ -23,6 +23,7 @@ const Register = () => {
   };
 
   return (
+    <div className='wrapper'>
     <div className='register'>
       <h2 className='registration'>Registration</h2>
       <form onSubmit={handleSubmit}>
@@ -77,6 +78,7 @@ const Register = () => {
         
         <button type="submit" className='registerbutton'>Register</button>
       </form>
+    </div>
     </div>
   );
 };

@@ -18,6 +18,7 @@ const navigateToRegister = () => {
 navigate('/register');
 }
   return (
+    <div className='wrapper'>
     <div className='login'>
       <h2 className='label'>To Do List</h2>
       
@@ -46,6 +47,7 @@ navigate('/register');
         </MediumButton>
         <p className='createaccount'><a  onClick={navigateToRegister} >Dont have an account yet?</a></p>
       </form>
+    </div>
     </div>
   );
 };

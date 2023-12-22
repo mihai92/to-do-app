@@ -1,0 +1,77 @@
+.home {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    height: 100vh;
+}
+
+.toplabel{
+    height: 100vh;
+    margin: auto;
+    width: 25%;
+    margin-bottom: 35vh;
+   
+}
+
+.buttons{
+    margin-top: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 34vh;
+    height: 20vh;
+    color: black;
+    font-weight: bold;
+    align-items: center;
+    background-color: white;
+    padding: 1.5vh 5.5vh;
+    border-radius: 15px;
+    border-width: 20px;
+}
+
+#button1{
+    align-items: center;
+    margin: 0.2vh;
+    margin-top: 2vh;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    height: 7vh;
+    width: 15rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: medium;
+
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+}
+#button1:hover {
+    background-color: white; 
+    color: black;
+}
+
+#button2{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    height: 7vh;
+    width: 15rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: medium;
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+}
+#button2:hover {
+    background-color: white; 
+    color: black;
+}

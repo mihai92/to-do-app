@@ -1,12 +1,15 @@
 #root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background-color: rgb(51, 204, 255);
     background: linear-gradient(0deg, rgba(41,145,173,1) 0%, rgba(51,204,255,1) 43%, rgba(34,207,255,1) 59%, rgba(0,212,255,1) 100%);
 }
 
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
 .register {
     text-align: center;
     position:relative;
