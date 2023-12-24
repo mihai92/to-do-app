@@ -5,6 +5,7 @@ const router = express.Router();
 const { Autentificare } = require("../Middleware/Auth");
 
 
+// Ruta folosita pentru trimiterea unei invitatii pentru un grup
 router.post("/invite/:InvitedId/:GroupId",Autentificare,async (req,res)=>{
     try{
         const [queryUser]=await db.execute("SELECT Nume FROM Users WHERE Id=?",[req.auth.id]);
@@ -18,6 +19,20 @@ router.post("/invite/:InvitedId/:GroupId",Autentificare,async (req,res)=>{
 });
 
 
+//Ruta folosita pentru primirea notificarilor
+router.get("/notifications", Autentificare, async(req,res)=>{
+    try{
+        const [query]=await db.execute("SELECT * FROM Notifications WHERE Id_Interceptor=?",[req.auth.id]);
+        res.status(200).json(query);
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
+
+
+
+
+// Ruta folosita pentru acceptarea/respingerea unei invitatii pentru alaturarea unui grup
 router.put('/inviteResponse/:InviteId',Autentificare, async(req,res)=>{
     const {bool}=req.body;
     try{
@@ -31,6 +46,8 @@ router.put('/inviteResponse/:InviteId',Autentificare, async(req,res)=>{
         res.status(500).json(err);
     }
 });
+
+
 
 
 

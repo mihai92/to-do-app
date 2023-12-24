@@ -5,9 +5,9 @@ const db=Data.getInstance();
 const { Autentificare } = require("../Middleware/Auth");
 
 
+// Toate rutele de aici sunt folosite pentru a gestiona activitati in modul "personal" al aplicatiei
 
-
-
+// Ruta folosita pentru a adauga o activitate noua 
 router.post("/Todo",Autentificare, async(req,res)=>{
     const {Name,Deadline}=req.body;
     try{
@@ -19,6 +19,7 @@ router.post("/Todo",Autentificare, async(req,res)=>{
 });
 
 
+// Ruta folosita pentru a primi o lista cu activitatile create de un utilizator
 router.get("/Todo",Autentificare, async(req,res)=>{
     try{
         const [query]=await db.execute("SELECT * FROM Activity WHERE Id_User=?",[req.auth.id]);
@@ -29,6 +30,8 @@ router.get("/Todo",Autentificare, async(req,res)=>{
 });
 
 
+
+// Ruta folosita pentru a sterge o activitate
 router.delete("/Todo/:Id",Autentificare, async(req,res)=>{
     try{
         console.log(req.params.Id)
@@ -40,7 +43,7 @@ router.delete("/Todo/:Id",Autentificare, async(req,res)=>{
 
 });
 
-
+// Ruta folosita pentru a modifica numele unei activitati
 router.put("/Todo/:Id",Autentificare, async(req,res)=>{
     const {Name}=req.body;
     try{
