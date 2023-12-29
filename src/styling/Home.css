@@ -10,7 +10,6 @@
     margin: auto;
     width: 25%;
     margin-bottom: 35vh;
-   
 }
 
 .buttons{
@@ -75,3 +74,61 @@
     background-color: white; 
     color: black;
 }
+
+#buttonpopup1 {
+
+    align-items: center;
+    margin: 0.2vh;
+    margin-top: 2vh;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    height: 5vh;
+    width: 10rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: medium;
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+}
+
+#buttonpopup1:hover {
+    background-color: white;
+    color: black;
+}
+
+.buttonspopup {
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toplabelpopup{
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vh;
+    color: black;
+    font-weight: bold;
+    align-items: center;
+    background-color: rgb(51, 204, 255);
+    margin: auto;
+    width: 25%;
+    margin-bottom: 3vh;
+}
+
+.input {
+    width: 30vh;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

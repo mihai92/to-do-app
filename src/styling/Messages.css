@@ -1,3 +1,8 @@
+.messages {
+  display: flex;
+  height: 100vh;
+}
+
 .homebar {
     display: flex;
     justify-content: left;
@@ -5,29 +10,8 @@
     height: 100vh;
 }
 
-.toplabel{
-    height: 100vh;
-    margin: auto;
-    width: 25%;
-    margin-bottom: 35vh;
-   
-}
 
-.buttons{
-    margin-top: 35vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 34vh;
-    height: 20vh;
-    color: black;
-    font-weight: bold;
-    align-items: center;
-    background-color: white;
-    padding: 1.5vh 5.5vh;
-    border-radius: 15px;
-    border-width: 20px;
-}
+
 
 #button1{
     align-items: center;
@@ -44,7 +28,6 @@
     text-align: center;
     text-decoration: none;
     font-size: medium;
-
     transition-duration: 0.4s;
     border: 2px solid rgb(51, 204, 255);
 }
@@ -75,3 +58,88 @@
     background-color: white; 
     color: black;
 }
+
+
+
+
+
+
+
+.box {
+    position: fixed;
+    cursor: move;
+    color: black;
+    background-color: white;
+    max-width: 215px;
+    overflow-wrap: break-word;
+    border-radius: 5px;
+    padding: 1em;
+    margin: auto;
+    user-select: none;
+  }
+  
+  .messageboard{
+    margin-top: 40vh;
+    background-color:white;
+    color: white;
+    height: 9vh; 
+    width: 52vh;
+    display: flex;
+    flex-direction: left;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  #new-item {
+    display: inline-block;
+    
+  }
+  .inputmessages {
+    color: black;
+    font-size: medium;
+
+    margin-left: 0.5vh;
+  }
+  
+  .inputmessages:focus {
+    outline: none;
+  }
+  
+  .buttonmessages {
+    
+    align-items: center;
+    margin: 0.2vh;
+    margin-top: 1vh;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    height: 5vh;
+    width: 10rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: medium;
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+  }
+  
+  .buttonmessages:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  #delete {
+    font-size: 0.6em;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+  }
+  
+  #delete:hover {
+    color: rgb(255, 55, 55);
+  }

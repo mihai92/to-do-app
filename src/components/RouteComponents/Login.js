@@ -24,8 +24,9 @@ navigate('/register');
       
       <form>
         
+        {/*  Email input   */}
         <input
-          className='input'
+          className='input'                 
           type="email"
           placeholder="Email"
           value={email}
@@ -33,19 +34,32 @@ navigate('/register');
         />
         <br />
        
+
+
+        {/*  Password input   */}
+
         <input
           className='input'
-          type="password"
+          type="password"                   
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
+
+
+        {/*  Login button   */}
+
         <MediumButton id='loginbutton'
         onClick={handleLogin}
-         label={"Login"}>
+         label={"Login"}>                   
         </MediumButton>
-        <p className='createaccount'><a  onClick={navigateToRegister} >Dont have an account yet?</a></p>
+
+        {/*  Create account redirect *DONE*   */}
+        <p className='createaccount'><a  onClick={navigateToRegister} >Dont have an account yet?</a></p> 
+
+
+
       </form>
     </div>
     </div>

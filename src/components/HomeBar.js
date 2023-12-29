@@ -9,9 +9,9 @@ const HomeBar = () => {
             <div className="profile">
                 Profil
             </div>
-            <MenuButton label="Personal tasks"></MenuButton>
-            <MenuButton label="Groups"></MenuButton>
-            <MenuButton cclass="Help" label="Help"/>
+            <MenuButton label="Personal tasks"></MenuButton>   {/*  Personal tasks button   */}
+            <MenuButton label="Groups"></MenuButton>           {/*  Groups button   */}
+            <MenuButton cclass="Help" label="Help"/>           {/*  Help button   */}
         </div>
     );
 };
