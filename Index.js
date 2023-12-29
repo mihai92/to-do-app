@@ -8,12 +8,14 @@ const userRoute=require("./Routes/User");
 const todoRoute=require("./Routes/Todo");
 const groupRoute=require("./Routes/Group");
 const notificationsRoute=require("./Routes/Notifications");
+const Group_ActivityRoute=require("./Routes/Group_Activity");
+
 
 app.use(userRoute);
 app.use(todoRoute);
 app.use(groupRoute);
 app.use(notificationsRoute);
-
+app.uste(Group_ActivityRoute);
 
 
 app.listen(5000, () => {

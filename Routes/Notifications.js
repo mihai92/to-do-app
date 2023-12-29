@@ -12,7 +12,8 @@ router.post("/invite/:InvitedId/:GroupId",Autentificare,async (req,res)=>{
         const [queryGroup]=await db.execute("SELECT Nume FROM GroupT WHERE Id=?",[req.params.GroupId]);
         const nume=queryUser[0];
         const numegrup=queryGroup[0];
-        const [query]=await db.execute("INSERT INTO Notifications(Id_Emitator,Id_Group,Id_Interceptor ,Mesaj, Acceptat, Vizibilitate_Acceptare) VALUES(?,?,?,Ai fost invitat de catre ? pentru a participa in grupul ?,false,true)",[req.auth.id,req.params.GroupId,req.params.InvitedId,nume.Nume,numegrup.Nume]);
+        const string="Ai fost invitat de catre "+nume.Nume+" pentru a participa in grupul "+numegrup.Nume;
+        const [query]=await db.execute("INSERT INTO Notifications(Id_Emitator,Id_Group,Id_Interceptor ,Mesaj, Acceptat, Vizibilitate_Acceptare, Notificare_noua) VALUES(?,?,?,?,false,true,true)",[req.auth.id, req.params.GroupId, req.params.InvitedId,string]);
     }catch(err){
         res.status(500).json(err);
     }
@@ -30,6 +31,15 @@ router.get("/notifications", Autentificare, async(req,res)=>{
 })
 
 
+//Ruta folosita pentru a modifica notificarile noi ca "vazute" dupa vizualizare
+router.put("/notifications",Autentificare, async(req,res)=>{
+    try{
+        const [query]=await db.execute("UPDATE Notifications SET Notificare_noua=false WHERE Id_Interceptor=?",[req.auth.id]);
+        res.send(200).json({Message:"Notificarile au fost vazute"});
+    }catch(err){
+        res.send(500).json(err);
+    }
+})
 
 
 // Ruta folosita pentru acceptarea/respingerea unei invitatii pentru alaturarea unui grup
