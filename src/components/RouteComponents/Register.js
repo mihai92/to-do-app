@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import '../../styling/Register.css'
+import { useNavigate } from 'react-router';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -16,10 +18,39 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //logica register
-    console.log('Form submitted:', formData);
+    if (formData.password !== formData.confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
+  
+    const userData = {
+      Username: formData.username,
+      Email: formData.email,
+      Password: formData.password,
+    };
+  
+    try {
+      const response = await fetch('/SignUp', { // Using the endpoint from your backend
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+  
+      const data = await response.json();
+  
+      if (response.status === 200) {
+        console.log('Registration successful:', data);
+        navigate('/login');
+      } else {
+        console.error('Registration failed:', data.message);
+      }
+    } catch (error) {
+      console.error('Registration request failed:', error);
+    }
   };
 
   return (

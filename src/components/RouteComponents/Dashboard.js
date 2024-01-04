@@ -38,12 +38,7 @@ const Dashboard = () => {
       <MenuBar activePage={activePage} setActivePage={setActivePage} />
       {contentComponent}
       {activePage === 'groups' && <GroupMembers />}
-      {/* <GroupMembers></GroupMembers>
-      <MainContent></MainContent>
-      <MenuBar></MenuBar> */}
-
     </div>
-    
   );
 };
 
