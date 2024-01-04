@@ -30,13 +30,13 @@ router.post("/login", async (req,res)=>{
 });
 
 router.post("/SignUp", async(req,res)=>{
-    const {Email,DOB,PhoneNumber, Password}=req.body;
+    const {Nickname,Email,DOB,PhoneNumber, Password}=req.body;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(Password, salt);
     
     try{
-        const [query]=await db.execute("INSERT INTO Users(Email,DOB,PhoneNumber, Password) VALUES (?, ?, ?,?)",[Email, DOB, PhoneNumber, hashedPassword]);
+        const [query]=await db.execute("INSERT INTO Users(Nickname, Email,DOB,PhoneNumber, Password) VALUES (?, ?, ?, ?,?)",[Nickname, Email, DOB, PhoneNumber, hashedPassword]);
         res.status(200).json({ message: "Utilizator creat" });
     }
     catch(err){
