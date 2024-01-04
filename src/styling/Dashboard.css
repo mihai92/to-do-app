@@ -1,5 +1,6 @@
 /* MainContent.css */
 .main-content {
+  padding-left: 10vw;
     display: flex;
     justify-content: center;
     align-items: flex-start;

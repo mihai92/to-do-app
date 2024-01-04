@@ -1,85 +1,98 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import '../styling/MainContent.css';
 
-const initialColumns = {
-  'to-do': ['Requirement 4', 'Requirement 5', 'Requirement 6'],
+// Sample initial data, this would be replaced by data from your backend
+const initialTasks = {
+  'to-do': ['Task 1', 'Task 2', 'Task 3'],
   'in-progress': [],
-  'done': [],
   'in-review': [],
+  'done': [],
 };
 
-const MainContent = () => {
-    const [columns, setColumns] = useState(initialColumns);
-  
-    const onDragEnd = (result) => {
-      const { source, destination } = result;
-  
-      // If there is no destination (dropped outside the list), do nothing
-      if (!destination) return;
-  
-      // If the item is dropped in the same place, do nothing
-      if (
-        source.droppableId === destination.droppableId &&
-        source.index === destination.index
-      ) return;
-  
-      // Start with a shallow copy of the columns
-      const newColumns = {...columns};
-  
-      // Pull out the source and destination columns
-      const sourceColumn = newColumns[source.droppableId];
-      const destinationColumn = newColumns[destination.droppableId];
-  
-      // Pull out the task from the source column
-      const [removed] = sourceColumn.splice(source.index, 1);
-  
-      // If the source and destination columns are the same, we're just reordering in the same column
-      if (source.droppableId === destination.droppableId) {
-        sourceColumn.splice(destination.index, 0, removed);
-      } else {
-        // Otherwise, we're moving the task to a different column
-        destinationColumn.splice(destination.index, 0, removed);
-      }
-  
-      // Update the state with the new column data
-      setColumns(newColumns);
-    };
-  
-    return (
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="main-content">
-          {Object.entries(columns).map(([columnId, tasks], index) => (
-            <Droppable droppableId={columnId} key={columnId}>
-              {(provided) => (
-                <div
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  className="column"
-                >
-                  <h2>{columnId.replace('-', ' ')}</h2>
-                  {tasks.map((task, index) => (
-                    <Draggable key={task} draggableId={`task-${columnId}-${index}`} index={index}>
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="task"
-                        >
-                          {task}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          ))}
-        </div>
-      </DragDropContext>
-    );
+function MainContent() {
+  const [tasks, setTasks] = useState(initialTasks);
+
+  const onDragEnd = (result) => {
+    const { source, destination } = result;
+
+    // Dropped outside the list
+    if (!destination) {
+      return;
+    }
+
+    if (source.droppableId === destination.droppableId) {
+      const newTaskList = Array.from(tasks[source.droppableId]);
+      const [relocatedItem] = newTaskList.splice(source.index, 1);
+      newTaskList.splice(destination.index, 0, relocatedItem);
+
+      setTasks({
+        ...tasks,
+        [source.droppableId]: newTaskList,
+      });
+    } else {
+      const sourceList = Array.from(tasks[source.droppableId]);
+      const destinationList = Array.from(tasks[destination.droppableId]);
+      const [relocatedItem] = sourceList.splice(source.index, 1);
+
+      destinationList.splice(destination.index, 0, relocatedItem);
+
+      setTasks({
+        ...tasks,
+        [source.droppableId]: sourceList,
+        [destination.droppableId]: destinationList,
+      });
+    }
   };
-  
-  export default MainContent;
+
+  return (<div className='main-content'>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+        {Object.keys(tasks).map((listId) => (
+          <Droppable droppableId={listId} key={listId}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                style={{
+                  background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
+                  padding: 8,
+                  width: 250,
+                  minHeight: 500,
+                  margin: 8,
+                }}
+              >
+                <h2>{listId.toUpperCase().replace(/-/g, ' ')}</h2>
+                {tasks[listId].map((item, index) => (
+                  <Draggable key={item} draggableId={item} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={{
+                          userSelect: 'none',
+                          padding: 16,
+                          margin: '0 0 8px 0',
+                          minHeight: '50px',
+                          backgroundColor: snapshot.isDragging ? '#263B4A' : '#456C86',
+                          color: 'white',
+                          ...provided.draggableProps.style,
+                        }}
+                      >
+                        {item}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        ))}
+      </div>
+    </DragDropContext>
+    </div>
+  );
+}
+
+export default MainContent;

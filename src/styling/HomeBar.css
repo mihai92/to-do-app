@@ -1,0 +1,27 @@
+.task-styling {
+    height: 100vh;
+    width: 11rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgb(255, 255, 255);
+}
+.profile {
+    height: 16vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    vertical-align: left;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    border-bottom: 2px solid rgb(51, 204, 255);
+
+}
+
+.background{
+    color: black;
+}
+

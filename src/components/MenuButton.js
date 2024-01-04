@@ -3,7 +3,7 @@ import '../styling/MenuButton.css'
 
 const MenuButton = ({ onClick, label, cclass }) => {
   return (
-    <button className={`menu-button ${cclass}`} onClick={onClick}>
+    <button className={`menu-buttonn ${cclass}`} onClick={onClick}>
       {label}
     </button>
   );

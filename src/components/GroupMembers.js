@@ -4,7 +4,7 @@ import MenuButton from "./MenuButton";
 
 const GroupMembers = () => {
     return(
-        <div className="GroupMembers">
+    <div className="GroupMembers">
         <div className="GroupMembersTop">
             GroupMembers
         </div>

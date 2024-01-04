@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../styling/Register.css'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -22,13 +23,15 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Registration</h2>
+    <div className='wrapper'>
+    <div className='register'>
+      <h2 className='registration'>Registration</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
           <input
+            className='input'
             type="text"
+            placeholder="Username"
             id="username"
             name="username"
             value={formData.username}
@@ -37,8 +40,9 @@ const Register = () => {
           />
         </div>
         <div>
-          <label htmlFor="email">Email:</label>
           <input
+            className='input'
+            placeholder="Email"
             type="email"
             id="email"
             name="email"
@@ -48,8 +52,9 @@ const Register = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
           <input
+            className='input'
+            placeholder="Password"
             type="password"
             id="password"
             name="password"
@@ -59,8 +64,9 @@ const Register = () => {
           />
         </div>
         <div>
-          <label htmlFor="confirmPassword">Confirm Password:</label>
           <input
+            className='input'
+            placeholder="Confirm Password"
             type="password"
             id="confirmPassword"
             name="confirmPassword"
@@ -69,8 +75,10 @@ const Register = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        
+        <button type="submit" className='registerbutton'>Register</button>
       </form>
+    </div>
     </div>
   );
 };

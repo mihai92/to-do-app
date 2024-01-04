@@ -1,36 +1,31 @@
 /* MainContent.css */
-.main-content {
+/* .main-content {
     .main-content {
         display: flex;
         justify-content: center;
-        align-items: flex-start; /* Change this to 'center' if you want vertical centering */
-        gap: 10px; /* spacing between columns */
+        align-items: flex-start; 
+        gap: 10px; 
         padding: 10px;
-        overflow: auto; /* enables scrolling if the content overflows */
+        overflow: auto; 
         max-width: 75vw;
-        min-height: 100vh; /* Ensures that the flex container takes at least the full viewport height */
+        min-height: 100vh; 
       }
-  }
-  
+  } */
+/*   
   .column {
-    background-color: #6a0dad; /* Your column color */
+    background-color: #6a0dad; 
     padding: 8px;
     width: 100%;
-    max-width: 250px; /* Adjust the max width as needed */
-    min-height: 200px; /* Minimum height for columns */
-    border-radius: 4px; /* Optional: for rounded corners */
-  }
-  
+    max-width: 250px; 
+    min-height: 200px; 
+    border-radius: 4px; 
+  } */
+/*   
   .task {
-    background-color: #fff; /* Your task color */
+    background-color: #fff; 
     padding: 6px;
     margin-bottom: 8px;
-    border-radius: 4px; /* Optional: for rounded corners */
+    border-radius: 4px; 
   }
+  */
   
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .main-content {
-      flex-direction: column;
-    }
-  }
