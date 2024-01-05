@@ -1,20 +1,4 @@
 .medium-button {
-<<<<<<< Updated upstream
-  margin-top: 2vh;
-  background-color: #ffffff; /* Green */
-  border: none;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  font-size: medium;
-
-  }
-
-.medium-button:hover {
-    background-color: rgba(255, 255, 255, 0.527);
-  }
-=======
     align-items: center;
     margin: 0.2vh;
     margin-top: 2vh;
@@ -37,4 +21,3 @@
     color: black;
 }
 
->>>>>>> Stashed changes

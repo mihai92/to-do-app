@@ -2,24 +2,6 @@ import React from "react";
 import '../styling/MenuBar.css'
 import MenuButton from "./MenuButton";
 
-<<<<<<< Updated upstream
-const MenuBar = () => {
-    return(
-        <div className="task-styling">
-            <div className="profile">
-                Profil
-            </div>
-            <MenuButton label="Personal"></MenuButton>
-            <MenuButton label="Groups"></MenuButton>
-            <MenuButton label="Assigned Tasks"></MenuButton>
-            <MenuButton label="Projects"></MenuButton>
-            <MenuButton cclass="Help" label="Help"/>
-        </div>
-    );
-};
-
-
-=======
 const buttonsConfig = {
   personal: ['Home', 'Group tasks', 'Message board'],
   groups: ['Home','Personal tasks', 'Message board', 'Create task'],
@@ -75,5 +57,4 @@ const buttonsConfig = {
     );
   };
 
->>>>>>> Stashed changes
 export default MenuBar;

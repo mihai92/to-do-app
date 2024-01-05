@@ -37,8 +37,8 @@
     padding-right: 5.5vh;
     font-size:medium; 
 }
-#loginbutton{
-    margin: 0.2vh;
+.loginbutton{
+    margin: 2px;
     margin-top: 2vh;
     background-color: rgb(51, 204, 255);
     border: none;
@@ -53,7 +53,7 @@
     transition-duration: 0.4s;
     border: 2px solid rgb(51, 204, 255);
 }
-#loginbutton:hover {
+.loginbutton:hover {
     background-color: white; 
     color: black;
 }

@@ -12,12 +12,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
     width: 50vh;
     color: black;
     font-weight: bold;
     align-items: center;
     background-color: white;
-    
+   
   }
   
   .tasks-container {

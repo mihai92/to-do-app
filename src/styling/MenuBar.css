@@ -1,10 +1,6 @@
 .task-styling {
     height: 100vh;
-<<<<<<< Updated upstream
-    width: 200px;
-=======
     width: 11rem;
->>>>>>> Stashed changes
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,12 +8,7 @@
     background-color: rgb(255, 255, 255);
 }
 .profile {
-<<<<<<< Updated upstream
-
-    height: 122px;
-=======
     height: 16vh;
->>>>>>> Stashed changes
     display: flex;
     align-items: center;
     justify-content: center;
