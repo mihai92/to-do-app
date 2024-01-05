@@ -46,20 +46,23 @@ router.get("/GActivity/:Id_Group",Autentificare, async (req,res)=>{
 router.put("/GActivity/:Id_Group/:Id_Activity",Autentificare, async(req,res)=>{
     try{
         const {acceptare}=req.body;
-        const [verificare]=await db.execute("SELECT * FROM Members WHERE Id_Group=? AND Id_Membru=?",[req.params.Id_Group,req.auth.id]);
-        
-        if(verificare[0]===null){
+        const [verificare]=await db.execute("SELECT u.Nume FROM Members as m, Users as u WHERE m.Id_Group=? AND m.Id_Membru=? AND m.Id_Membru=s.Id",[req.params.Id_Group,req.auth.id]);
+        if(!verificare.length){
             res.send(403).json({Message:"Utilizatorul nu face parte din grupul ales"});
         }
-
+        const [grupAdmin]= await db.execute("SELECT Id_Admin FROM Groupt WHERE Id_Group=?",[req.params.Id_Group]);
         if(acceptare===false){
-            const [query]=await db.execute("DELETE FROM Group_Activity WHERE Id_Activitate=?",[req.params.Id_Activity])
+            const [query]=await db.execute("DELETE FROM Group_Activity WHERE Id_Activitate=?",[req.params.Id_Activity]);
+            const string="Utilizatorul "+verificare[0].Nume+" nu a acceptat task-ul alocat.";
+            const [query2]=await db.execute("INSERT INTO Notifications(Id_Group ,Id_Emitator, Id_Interceptor,Mesaj, Acceptat, Vizibilitate_Acceptare , Notificare_noua) VALUES(?,?,?,?,false,false,true)",[req.params.Id_Group,req.auth.id,grupAdmin[0].Id_Admin,string]);
             res.send(200).json({Message:"Activitatea a fost respinsa"});
         }
 
-
+        const string="Utilizatorul "+verificare[0].Nume+" si-a acceptat task-ul alocat.";
         const [query2]=await db.execute("UPDATE Group_Activity WHERE Id_Activitate=? SET Acceptat=true",[req.params.Id_Activity]);
+        const [queryn]=await db.execute("INSERT INTO Notifications(Id_Group ,Id_Emitator, Id_Interceptor,Mesaj, Acceptat, Vizibilitate_Acceptare , Notificare_noua) VALUES(?,?,?,?,false,false,true)",[req.params.Id_Group,req.auth.id,grupAdmin[0].Id_Admin,string]);
         res.send(200).json({Message:"Activitatea a fost acceptata"});
+        
     }catch(err){
         res.send(500).json(err);
     }
