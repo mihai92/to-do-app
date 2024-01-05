@@ -1,4 +1,5 @@
 .medium-button {
+<<<<<<< Updated upstream
   margin-top: 2vh;
   background-color: #ffffff; /* Green */
   border: none;
@@ -13,3 +14,27 @@
 .medium-button:hover {
     background-color: rgba(255, 255, 255, 0.527);
   }
+=======
+    align-items: center;
+    margin: 0.2vh;
+    margin-top: 2vh;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    height: 7vh;
+    width: 15rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: medium;
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+}
+.medium-button:hover {
+    background-color: white; 
+    color: black;
+}
+
+>>>>>>> Stashed changes
