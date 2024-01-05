@@ -6,7 +6,7 @@ const db=Data.getInstance();
 async function createTable(){
 try{
     await db.query
-    ("CREATE TABLE IF NOT EXISTS Users (Id INT AUTO_INCREMENT PRIMARY KEY, Nickname VARCHAR(250),   Email VARCHAR(250), DOB DATE, PhoneNumber VARCHAR(250),   Password VARCHAR(250))");
+    ("CREATE TABLE IF NOT EXISTS Users (Id INT AUTO_INCREMENT PRIMARY KEY, Nickname VARCHAR(250),   Email VARCHAR(250), DOB DATE, PhoneNumber VARCHAR(250),   Password VARCHAR(250)), UNIQUE Nickname");
     await db.query
     ("CREATE TABLE IF NOT EXISTS Activity (Id_Activitate INT AUTO_INCREMENT PRIMARY KEY,        Id_User INT,        Nume VARCHAR(250),        Status BOOLEAN,        Deadline DATE,        FOREIGN KEY (Id_User) REFERENCES Users(Id)    )");
     await db.query
