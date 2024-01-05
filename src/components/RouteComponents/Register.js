@@ -1,38 +1,19 @@
 import React, { useState } from 'react';
 import '../../styling/Register.css'
 import { useNavigate } from 'react-router';
+import { async } from 'q';
 
 const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      console.error('Passwords do not match');
-      return;
-    }
-  
-    const userData = {
-      Username: formData.username,
-      Email: formData.email,
-      Password: formData.password,
-    };
-  
-    try {
-      const response = await fetch('/SignUp', { // Using the endpoint from your backend
+const [Nickname, setNickname]=useState("");
+const [Email, setEmail]=useState("");
+const [DOB, setDOB]=useState("");
+const [PhoneNumber, setPhoneNumber]=useState("");
+const [Password, setPassword]=useState("");
+let userData ={Nickname,Email,DOB,PhoneNumber,Password}
+async function inregistrare(){
+const response = await fetch('http://localhost:5000/SignUp', { // Using the endpoint from your backend
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,37 +29,32 @@ const Register = () => {
       } else {
         console.error('Registration failed:', data.message);
       }
-    } catch (error) {
-      console.error('Registration request failed:', error);
-    }
   };
 
   return (
     <div className='wrapper'>
     <div className='register'>
       <h2 className='registration'>Registration</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div>
           <input
             className='input'
             type="text"
-            placeholder="Username"
+            placeholder="Nickname"
             id="username"
             name="username"
-            value={formData.username}
-            onChange={handleChange}
+            onChange={(e)=>setNickname(e.target.value)}
             required
           />
         </div>
         <div>
           <input
             className='input'
-            placeholder="Email"
+            placeholder="email"
             type="email"
             id="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            onChange={(e)=>setEmail(e.target.value)}
             required
           />
         </div>
@@ -89,29 +65,36 @@ const Register = () => {
             type="password"
             id="password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            onChange={(e)=>setPassword(e.target.value)}
             required
           />
         </div>
         <div>
           <input
             className='input'
-            placeholder="Confirm Password"
-            type="password"
+            placeholder="Date of birth"
+            type="input"
             id="confirmPassword"
             name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
+            onChange={(e)=>setDOB(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <input
+            className='input'
+            placeholder="phonenumber"
+            type="input"
+            onChange={(e)=>setPhoneNumber(e.target.value)}
             required
           />
         </div>
         
-        <button type="submit" className='registerbutton'>Register</button>
+        <button type="submit" className='registerbutton' onClick={inregistrare}>Register</button>
       </form>
     </div>
     </div>
   );
-};
+}
 
 export default Register;

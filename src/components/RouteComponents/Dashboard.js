@@ -9,7 +9,7 @@ import Home from './Home';
 
 const Dashboard = () => {
 
-  const [activePage, setActivePage] = useState('groups');
+  const [activePage, setActivePage] = useState('home');
 
   let contentComponent;
   switch (activePage) {

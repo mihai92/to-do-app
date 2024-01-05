@@ -1,65 +1,34 @@
-/* Assuming that .sidebar already has the desired styles */
 
 .personal {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center the tasks container on the page */
-    padding-left: 15vw; /* Adjust based on sidebar width */
-    width: calc(85vw); /* Take the remaining width of the viewport */
-  }
-  
-  .personal-header {
-    font-size: 2rem; /* Adjust size as needed */
-    color: black; /* Text color */
-    margin: 20px 0; /* Space above and below the header */
-  }
-  
-  .tasks-container {
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Allows tasks to wrap to the next line */
-    gap: 20px; /* Adjust the space between tasks */
-    margin-bottom: 20px; /* Space below the task container */
-  }
-  
-  .task-item {
-    background-color: #6E44FF;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .task-checkbox {
-    /* Styles for your checkbox if needed */
-  }
-  
-  .add-task-button {
-    padding: 10px;
-    background-color: #6E44FF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: auto; /* Allow the button to size to its content */
-  }
-  
-  .add-task-button:hover {
-    background-color: #7E57FF;
-  }
-  
-  .remove-task-btn {
-    padding: 4px 8px;
-    background: #FF4A4A;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .remove-task-btn:hover {
-    background: #FF6565;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the tasks container on the page */
+  padding-left: 15vw; /* Adjust this as needed to prevent overlap with your sidebar */
+}
+
+.personal-header {
+  font-size: 2em; /* Adjust size as needed */
+  color: #000000; /* Text color */
+  margin: 20px 0; /* Space above and below the header */
+}
+
+.tasks-container {
+  width: 100%; /* Set the width to fill the container */
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column; /* Stack tasks vertically */
+  gap: 10px; /* Space between tasks */
+  align-items: center; /* Center the tasks in the container */
+  overflow-y: auto; /* Allow scrolling */
+}
+
+.task-item {
+  background-color: #6E44FF; /* Adjust the background color as needed */
+  padding: 10px; /* Adjust padding as needed */
+  border-radius: 5px; /* Rounded corners for task items */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
+  width: calc(100% - 20px); /* Adjust width as needed, accounting for padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
