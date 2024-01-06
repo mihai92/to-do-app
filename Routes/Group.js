@@ -17,6 +17,17 @@ router.post("/group",Autentificare,async (req,res)=>{
     }
 })
 
+//Ruta folosita pentru a cauta un utilizator in momentul in care acesta trebuie adaugat 
+router.get("/people/:Nickname",Autentificare,VerificareRol, async (req,res)=>{
+    try{
+        const [query]=await db.execute("SELECT * FROM Users WHERE Nickname LIKE=?",[req.params.Nickname]);
+        res.send(200).json(query);
+    }catch(err){
+        res.send(500).json(err);
+    }
+});
+
+
 // Ruta folosita pentru a primi o lista cu grupurile din care un utilizator face parte
 router.get("/group",Autentificare,async (req,res)=>{
     try{

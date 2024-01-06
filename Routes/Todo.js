@@ -47,17 +47,18 @@ router.delete("/Todo/:Id",Autentificare, async(req,res)=>{
 router.put("/Todo/:Id",Autentificare, async(req,res)=>{
     const {Name}=req.body;
     try{
-        const [query]=await db.execute("UPDATE Activity SET Name=? WHERE Id_Activitate=?",[Name,req.params.Id]);
+        const [query]=await db.execute("UPDATE Activity SET Nume=? WHERE Id_Activitate=?",[Name,req.params.Id]);
         res.status(200).json({Message:"Activitatea a fost actualizata"});
     }catch(err){
         res.status(500).json(err);
     }
 });
 
-
+//Ruta folosita pentru a schimba statusul unei activitati
 router.put("/TodoStatus/:Id", Autentificare, async(req,res)=>{
+    const {Status}=req.body;
     try{
-        const [query]=await db.execute("UPDATE Activity SET Status=True WHERE Id_Activitate=?",[req.params.Id]);
+        const [query]=await db.execute("UPDATE Activity SET Status=? WHERE Id_Activitate=?",[Status,req.params.Id]);
         res.status(200).json({Message:"Statusul a fost schimbat cu succes"});
     }catch(err){
         res.status(500).json(err);

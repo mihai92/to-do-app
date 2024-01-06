@@ -39,7 +39,14 @@ router.get("/GActivity/:Id_Group",Autentificare, async (req,res)=>{
 })
 
 
-
+router.get("/GActivity_Finalizat/:Id_Group",Autentificare,VerificareRol, async(req,res)=>{
+    try{
+        const [query]=await db.execute("SELECT * FROM Group_Activity WHERE Status=true AND Id_Group=?",[req.params.Id_Group]);
+        res.send(200).json(query);
+    }catch(err){
+        res.send(500).json(err);
+    }
+})
 
 
 // Ruta folosita pentru a accepta sau respinge un task atribuit tie ca membru al grupului

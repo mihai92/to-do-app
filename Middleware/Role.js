@@ -3,8 +3,8 @@ const db=Data.getInstance();
 
 async function VerificareRol(req,res,next){
     try{
-        const rol=await db.execute("SELECT Id_Admin FROM GroupT WHERE Id_Admin=?",[req.auth.id]);
-        if(rol.Id_Admin==null){
+        const [rol]=await db.execute("SELECT Id_Admin FROM GroupT WHERE Id_Admin=?",[req.auth.id]);
+        if(!rol.Id_Admin){
             res.send(403).json({message:"Autorizare respinsa"})
         }
         else{
