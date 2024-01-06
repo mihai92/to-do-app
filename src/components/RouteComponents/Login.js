@@ -5,25 +5,25 @@ import '../../styling/Login.css'
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+let userData = {Email,Password}
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('http://localhost:5000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ Email: email, Password: password }),
+        body: JSON.stringify(userData),
       });
 
       const data = await response.json();
 
       if (response.status === 200) {
-        console.log('Login successful:', data);
-        // Save the token in localStorage or context/state management
+        console.log('Login successful:', data.token);
+        localStorage.setItem("user-info",data.token);
         // Navigate to the dashboard or home page upon successful login
         navigate('/dashboard');
       } else {
@@ -44,14 +44,13 @@ const Login = () => {
   return (
     <div className="wrapper">
       <div className="login">
-        <h2>To Do List</h2>
+        <h2 id='toplabel'>To Do List</h2>
         <form onSubmit={handleLogin}>
           {/* Email input */}
           <input
             className="input"
             type="email"
             placeholder="Email"
-            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <br />
@@ -60,12 +59,11 @@ const Login = () => {
             className="input"
             type="password"
             placeholder="Password"
-            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <br />
           {/* Login button */}
-          <button className="loginbutton" > Login </button>
+          <button className="loginbutton"  onClick={handleLogin}> Login </button>
         </form>
         {/* Create account redirect */}
         <p className="createaccount" onClick={navigateToRegister}>

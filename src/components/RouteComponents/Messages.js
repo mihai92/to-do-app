@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import TopLabelMessages from '../TopLabelMessages';
 import '../../styling/Messages.css'
 import Draggable from "react-draggable";
