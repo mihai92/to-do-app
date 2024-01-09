@@ -11,6 +11,8 @@ router.post("/group",Autentificare,async (req,res)=>{
     const {Nume}=req.body;
     try{
         const [query]=await db.execute("INSERT INTO GroupT(Id_Admin,Nume) VALUES(?,?)",[req.auth.id,Nume]);
+        const [grup]=await db.execute("SELECT Id_Group FROM GroupT WHERE Id_Admin=?",[req.auth.id]);
+        const [query2]=await db.execute("INSERT INTO Members(Id_Group,Id_Membru) VALUES(?,?)",[grup[0].Id_Group,req.auth.id]);
         res.status(200).json({message:"Cererea a trecut cu succes"});
     }catch(err){
         res.status(500);
@@ -31,13 +33,22 @@ router.get("/people/:Nickname",Autentificare,VerificareRol, async (req,res)=>{
 // Ruta folosita pentru a primi o lista cu grupurile din care un utilizator face parte
 router.get("/group",Autentificare,async (req,res)=>{
     try{
-    const [query]=await db.execute("SELECT * FROM GroupT as g,Members as m WHERE g.Id_Group=m.Id_Group AND Id_Membru=?",[req.auth.id]);
-    res.status(200).json(query);
+        const [query]=await db.execute("SELECT * FROM GroupT as g,Members as m WHERE g.Id_Group=m.Id_Group AND Id_Membru=?",[req.auth.id]);
+        res.status(200).json(query);
     }catch(err){
         res.status(500).json(err);
     }
 })
 
+//Ruta folosita pentru a sterge un membru din grup
+router.delete("/member/:Id_Group/:Id_Membru", Autentificare,VerificareRol, async(req,res)=>{
+    try{
+        const [query]=await db.execute("DELETE FROM Members WHERE Id_Group=? AND Id_Membru=?",[req.params.Id_Group,req.params.Id_Membru])
+        res.status(200).json({Message:"Utilizatorul a fost sters cu succes"});
+    }catch(err){
+        res.status(200).json(err);
+    }
+})
 
 
 // Ruta folosita pentru a sterge un grup

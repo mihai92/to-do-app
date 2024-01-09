@@ -15,7 +15,7 @@ app.use(userRoute);
 app.use(todoRoute);
 app.use(groupRoute);
 app.use(notificationsRoute);
-app.uste(Group_ActivityRoute);
+app.use(Group_ActivityRoute);
 
 
 app.listen(5000, () => {

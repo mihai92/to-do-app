@@ -46,12 +46,16 @@ router.put("/notifications",Autentificare, async(req,res)=>{
 router.put('/inviteResponse/:InviteId',Autentificare, async(req,res)=>{
     const {bool}=req.body;
     try{
-        if(bool){
-        const [query]=await db.execute("UPDATE Notifications SET Acceptat=true AND Vizibilitate_Acceptare=true  WHERE Id=?",[req.params.InviteId]);
+        if(bool===false){
+            const [query2]=await db.execute("UPDATE Notifications SET Acceptat=false AND Vizibilitate_Acceptare=false  WHERE Id=?",[req.params.InviteId])
         }
         else{
-        const [query2]=await db.execute("UPDATE Notifications SET Acceptat=false AND Vizibilitate_Acceptare=false  WHERE Id=?",[req.params.InviteId])
-        }
+            const [query]=await db.execute("UPDATE Notifications SET Acceptat=true AND Vizibilitate_Acceptare=false  WHERE Id=?",[req.params.InviteId]);
+            const [query3]=await db.execute("SELECT Groupt.Id_Group, Groupt.Id_Admin FROM Groupt JOIN Notifications ON GroupT.Id_Group=Notifications.Id_Group WHERE Notifications.Id=?",[req.params.InviteId]);
+            const [query4]=await db.execute("INSERT INTO MEMBERS(Id_Group,Id_Membru) VALUES(?,?)",[query3[0].Id_Group,req.auth.id]);
+            const [query5]=await db.execute("INSERT INTO Notifications(Id_Emitator,Id_Group,Id_Interceptor ,Mesaj, Acceptat, Vizibilitate_Acceptare, Notificare_noua) VALUES(?,?,?,?,false,false,true)",[req.accepted.id,query3[0].Id_Group,query3[0].Id_Admin,"Un nou membru a venit in grupul tau"]);
+    }
+    res.status(200).json({Message:"Cererea a fost interceptata"});
     }catch(err){
         res.status(500).json(err);
     }
