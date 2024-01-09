@@ -14,7 +14,7 @@ try{
     await db.query
     ("CREATE TABLE IF NOT EXISTS Members(Id INT AUTO_INCREMENT PRIMARY KEY, Id_Group INT, Id_Membru INT, FOREIGN KEY(Id_Group) REFERENCES GroupT(Id_Group), FOREIGN KEY(Id_Membru) REFERENCES Users(Id) ) ");
     await db.query
-    ("CREATE TABLE IF NOT EXISTS Group_Activity( Id_Activitate INT AUTO_INCREMENT PRIMARY KEY,  Id_Group INT, Id_Membru INT,    Nume VARCHAR(250), Status BOOLEAN, Deadline DATE, Acceptat BOOLEAN, FOREIGN KEY(Id_Group) REFERENCES Members(Id_Group), FOREIGN KEY (Id_Membru) REFERENCES Members(Id_Membru)   )")
+    ("CREATE TABLE IF NOT EXISTS Group_Activity( Id_Activitate INT AUTO_INCREMENT PRIMARY KEY,  Id_Group INT, Id_Membru INT,    Nume VARCHAR(250), Status VARCHAR(250) NOT NULL, Deadline DATE, Acceptat BOOLEAN, FOREIGN KEY(Id_Group) REFERENCES Members(Id_Group), FOREIGN KEY (Id_Membru) REFERENCES Members(Id_Membru)   )")
     await db.query
     ("CREATE TABLE IF NOT EXISTS Notifications(Id INT AUTO_INCREMENT PRIMARY KEY,Id_Group INT,    Id_Emitator INT,      Id_Interceptor INT,   Mesaj VARCHAR(250), Acceptat BOOLEAN, Vizibilitate_Acceptare BOOLEAN  , Notificare_noua BOOLEAN,   FOREIGN KEY(Id_Emitator) REFERENCES Users(Id),      FOREIGN KEY(Id_Interceptor) REFERENCES Users(Id),   FOREIGN KEY(Id_Group) REFERENCES GroupT(Id_Group))");
     await db.end();

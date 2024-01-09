@@ -6,7 +6,7 @@ const { Autentificare } = require("../Middleware/Auth");
 
 
 // Ruta folosita pentru trimiterea unei invitatii pentru un grup
-router.post("/invite/:InvitedId/:GroupId",Autentificare,async (req,res)=>{
+router.post("/invite/:GroupId/:InvitedId",Autentificare,async (req,res)=>{
     try{
         const [queryUser]=await db.execute("SELECT Nume FROM Users WHERE Id=?",[req.auth.id]);
         const [queryGroup]=await db.execute("SELECT Nume FROM GroupT WHERE Id=?",[req.params.GroupId]);
