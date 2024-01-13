@@ -10,19 +10,24 @@ const { Autentificare } = require("../Middleware/Auth");
 router.post("/group",Autentificare,async (req,res)=>{
     const {Nume}=req.body;
     try{
+        const [queryverificare]=await db.execute("SELECT * FROM GroupT WHERE Nume=?",[Nume])
+        if(queryverificare.length > 0)
+          return  res.status(400).json({Message:"Numele deja exista"});
+
         const [query]=await db.execute("INSERT INTO GroupT(Id_Admin,Nume) VALUES(?,?)",[req.auth.id,Nume]);
         const [grup]=await db.execute("SELECT Id_Group FROM GroupT WHERE Id_Admin=?",[req.auth.id]);
-        const [query2]=await db.execute("INSERT INTO Members(Id_Group,Id_Membru) VALUES(?,?)",[grup[0].Id_Group,req.auth.id]);
+        const [query2]=await db.execute("INSERT INTO Members(Id_Group,Id_Membru) VALUES(?,?)",[grup[grup.length-1].Id_Group,req.auth.id]);
         res.status(200).json({message:"Cererea a trecut cu succes"});
     }catch(err){
-        res.status(500);
+        console.log(err);
+        res.status(500).json(err);
     }
 })
 
 //Ruta folosita pentru a primi membrii dintr-o lista
 router.get("/members/:Id_Group",Autentificare, async(req,res)=>{
     try{
-        const[query]=await db.execute("SELECT * FROM Members WHERE Id_Group=?",[req.params.Id_Group]);
+        const[query]=await db.execute("SELECT m.Id_Membru, u.Nickname FROM Users as u, Members as m WHERE u.Id=m.Id_Membru AND m.Id_Group=?",[req.params.Id_Group]);
         res.status(200).json(query);
     }catch(err){
         res.status(500).json(err);
@@ -33,10 +38,10 @@ router.get("/members/:Id_Group",Autentificare, async(req,res)=>{
 //Ruta folosita pentru a cauta un utilizator in momentul in care acesta trebuie adaugat 
 router.get("/people/:Nickname",Autentificare, async (req,res)=>{
     try{
-        const [query]=await db.execute("SELECT * FROM Users WHERE Nickname LIKE=?",[req.params.Nickname]);
-        res.send(200).json(query);
+        const [query]=await db.execute("SELECT Id,Nickname FROM Users WHERE Nickname=?",[req.params.Nickname]);
+        res.status(200).json(query);
     }catch(err){
-        res.send(500).json(err);
+        res.status(500).json(err);
     }
 });
 
