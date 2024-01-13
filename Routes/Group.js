@@ -33,7 +33,7 @@ router.get("/people/:Nickname",Autentificare,VerificareRol, async (req,res)=>{
 // Ruta folosita pentru a primi o lista cu grupurile din care un utilizator face parte
 router.get("/group",Autentificare,async (req,res)=>{
     try{
-        const [query]=await db.execute("SELECT * FROM GroupT as g,Members as m WHERE g.Id_Group=m.Id_Group AND Id_Membru=?",[req.auth.id]);
+        const [query]=await db.execute("SELECT * FROM GroupT AS g JOIN Members AS m ON g.Id_Group = m.Id_Group       WHERE m.Id_Membru = ?",[req.auth.id]);
         res.status(200).json(query);
     }catch(err){
         res.status(500).json(err);
