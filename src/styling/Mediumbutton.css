@@ -1,11 +1,23 @@
 .medium-button {
-    margin: 2px;
-    background-color: beige;
-    border-radius: 5px;
-    width: inherit;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    height: fit-content;
+    align-items: center;
+    margin: 0.2vh;
+    margin-top: 2vh;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    height: 7vh;
+    width: 15rem;
+    text-align: center;
+    text-decoration: none;
     font-size: medium;
-  }
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+}
+.medium-button:hover {
+    background-color: white; 
+    color: black;
+}
+

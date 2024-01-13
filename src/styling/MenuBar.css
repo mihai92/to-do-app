@@ -1,32 +1,23 @@
-.task-stylingg {
+.task-styling {
     height: 100vh;
-    width: 10vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
+    width: 11rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: rgb(50, 1, 81);
-    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
 }
-.profilee {
-
-    height: 122px;
+.profile {
+    height: 16vh;
     display: flex;
     align-items: center;
     justify-content: center;
     width: inherit;
-    vertical-align: top;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-    color: aliceblue;
+    vertical-align: left;
+    color: black;
     font-weight: bold;
-    background-color: rgb(50, 1, 81);
+    background-color: white;
+    border-bottom: 2px solid rgb(51, 204, 255);
 }
 
 .background{

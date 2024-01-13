@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import HomeBar from '../HomeBar';
 import TopLabelMessages from '../TopLabelMessages';
 import '../../styling/Messages.css'
 import Draggable from "react-draggable";
@@ -54,9 +53,7 @@ function Messages() {
   return (
 
     <div className='messages'>
-      <div className='homebar'>
-        <HomeBar></HomeBar>   {/*  Homebar-ul din stanga, in Homebar.js sunt toate butoanele   */}
-      </div>
+
 
       <div className='toplabel'><TopLabelMessages></TopLabelMessages>
         <div className='messageboard'>

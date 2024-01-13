@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import MediumButton from '../MediumButton';
 import { useNavigate } from 'react-router-dom';
 import '../../styling/Login.css'
+import { wait } from '@testing-library/user-event/dist/utils';
 
 
 const Login = () => {
+  localStorage.clear();
   const navigate = useNavigate();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -25,7 +26,6 @@ let userData = {Email,Password}
       if (response.status === 200) {
         console.log('Login successful:', data.token);
         localStorage.setItem("user-info",data.token);
-        // Navigate to the dashboard or home page upon successful login
         navigate('/dashboard');
       } else {
         // Handle errors such as invalid credentials
@@ -38,14 +38,10 @@ let userData = {Email,Password}
     }
   };
 
-  const navigateToRegister = () => {
-    navigate('/register');
-  };
-
   return (
     <div className="wrapper">
       <div className="login">
-        <h2>To Do List</h2>
+        <h2 id='toplabel'>To Do List</h2>
         <form onSubmit={handleLogin}>
           {/* Email input */}
           <input
@@ -64,10 +60,10 @@ let userData = {Email,Password}
           />
           <br />
           {/* Login button */}
-          <MediumButton id="loginButton" label="Login" onClick={handleLogin} />
+          <button className="loginbutton"  type='submit'> Login </button>
         </form>
         {/* Create account redirect */}
-        <p className="createAccount" onClick={navigateToRegister}>
+        <p className="createaccount" onClick={() => navigate('/register')}>
           Don't have an account yet?
         </p>
       </div>

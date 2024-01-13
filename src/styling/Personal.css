@@ -1,34 +1,145 @@
+/* Assuming that .sidebar already has the desired styles */
 
 .personal {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center the tasks container on the page */
-  padding-left: 15vw; /* Adjust this as needed to prevent overlap with your sidebar */
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the tasks container on the page */
+    width: 100%;
+  }
+  
+  .personal-header {
+    height: 6.7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 50vh;
+    color: black;
+    font-weight: bold;
+    align-items: center;
+    background-color: white;
+   
+  }
+  
+  .tasks-container {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows tasks to wrap to the next line */
+    gap: 20px; /* Adjust the space between tasks */
+    margin-bottom: 5px; /* Space below the task container */
+    color:black;
+  }
+  
+  .task-item {
 
-.personal-header {
-  font-size: 2em; /* Adjust size as needed */
-  color: #000000; /* Text color */
-  margin: 20px 0; /* Space above and below the header */
-}
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    margin-top: 20vh;
+    background-color: white;
+  }
+  
+  .task-checkbox {
+    position: fixed;
+    cursor: move;
+    color: black;
+    max-width: 215px;
+    overflow-wrap: break-word;
+    border-radius: 5px;
+    padding: 1em;
+    margin: auto;
+    user-select: none;
+    height: 2vh;
+  }
+  
+  .add-task-button {
+    margin: 2px;
+    margin-top: 2vh;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 1.5vh 5.5vh;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+    border-width: 20px;
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+    margin:2vh;
+  }
+  
+  .add-task-button:hover {
+    background-color: white; 
+    color: black;
+  }
+  
+  .remove-task-btn {
+    margin-left: 1vh;
+    padding: 4px 8px;
+    background: #FF4A4A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: center;
 
-.tasks-container {
-  width: 100%; /* Set the width to fill the container */
-  max-height: 80vh;
-  display: flex;
-  flex-direction: column; /* Stack tasks vertically */
-  gap: 10px; /* Space between tasks */
-  align-items: center; /* Center the tasks in the container */
-  overflow-y: auto; /* Allow scrolling */
-}
+  }
+  
+  .remove-task-btn:hover {
+    background: #FF6565;
+  }
 
-.task-item {
-  background-color: #6E44FF; /* Adjust the background color as needed */
-  padding: 10px; /* Adjust padding as needed */
-  border-radius: 5px; /* Rounded corners for task items */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
-  width: calc(100% - 20px); /* Adjust width as needed, accounting for padding */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
+  .buttonandinput{
+    padding:2px;
+    padding-left:5px;
+    padding-top: 4px;
+    border-radius: 11px;
+   
+    background-color:white;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .input{
+    width: 10rem;
+  }
+
+  .calendar{
+    margin-left:2px;
+    width: 20rem;
+    height: 3.9vh;
+	  font-size:large;
+  }
+
+
+  .donebutton{
+    margin: 2px;
+    margin-top: 2vh;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 1.5vh 5.5vh;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+    border-width: 20px;
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+    margin-left:0.5vh;
+  }
+
+  .donebutton:hover{
+    background-color: white;
+    color: black;
+  }

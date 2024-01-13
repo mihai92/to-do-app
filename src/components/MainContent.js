@@ -1,46 +1,98 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import CreateTaskButton from './CreateTaskButton';
+const url = 'http://localhost:5000/GActivity';
+const token = localStorage.getItem("user-info");
 
-// Sample initial data, this would be replaced by data from your backend
-const initialTasks = {
-  'to-do': ['Task 1', 'Task 2', 'Task 3'],
-  'in-progress': [],
-  'in-review': [],
-  'done': [],
-};
+function MainContent({ groupId }) {
+  const [tasks, setTasks] = useState({ 'to-do': [], 'in-progress': [], 'in-review': [], 'done': [] });
 
-function MainContent() {
-  const [tasks, setTasks] = useState(initialTasks);
 
-  const onDragEnd = (result) => {
+
+  useEffect(() => {
+    if (groupId) {
+      fetchGroupTasks(groupId);
+    }
+  }, [groupId]);
+
+  const refreshGroupList = (groupId) => {
+    fetchGroupTasks(groupId)
+  }
+
+
+  const fetchGroupTasks = async (groupId) => {
+    try {
+      const response = await fetch(`${url}/${groupId}/`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      console.log(data)
+      // Here you need to transform the data to fit the tasks state structure
+      setTasks(transformDataToTasksState(data));
+    } catch (error) {
+      console.error('There was an error fetching the tasks:', error);
+    }
+  };
+
+  const transformDataToTasksState = (data) => {
+    const newTasks = { 'to-do': [], 'in-progress': [], 'in-review': [], 'done': [] };
+    data.forEach(task => {
+      if (!newTasks[task.Status]) {
+        newTasks[task.Status] = [];
+      }
+      newTasks[task.Status].push(task); // Push the entire task object
+    });
+    return newTasks;
+  };
+
+  console.log(groupId)
+  const onDragEnd = async (result) => {
     const { source, destination } = result;
-
-    // Dropped outside the list
-    if (!destination) {
+  
+    // Dropped outside the list or dropped in the same position as before
+    if (!destination || (source.droppableId === destination.droppableId && source.index === destination.index)) {
       return;
     }
-
-    if (source.droppableId === destination.droppableId) {
-      const newTaskList = Array.from(tasks[source.droppableId]);
-      const [relocatedItem] = newTaskList.splice(source.index, 1);
-      newTaskList.splice(destination.index, 0, relocatedItem);
-
-      setTasks({
-        ...tasks,
-        [source.droppableId]: newTaskList,
+  
+    const sourceList = Array.from(tasks[source.droppableId]);
+    const destinationList = Array.from(tasks[destination.droppableId]);
+    const [relocatedItem] = sourceList.splice(source.index, 1);
+  
+    destinationList.splice(destination.index, 0, relocatedItem);
+  
+    setTasks({
+      ...tasks,
+      [source.droppableId]: sourceList,
+      [destination.droppableId]: destinationList,
+    });
+  
+    // Update the status in the backend
+    try {
+      const response = await fetch(`${url}_Status/${relocatedItem.Id_Activitate}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ Status: destination.droppableId })
       });
-    } else {
-      const sourceList = Array.from(tasks[source.droppableId]);
-      const destinationList = Array.from(tasks[destination.droppableId]);
-      const [relocatedItem] = sourceList.splice(source.index, 1);
-
-      destinationList.splice(destination.index, 0, relocatedItem);
-
-      setTasks({
-        ...tasks,
-        [source.droppableId]: sourceList,
-        [destination.droppableId]: destinationList,
-      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const data = await response.json();
+      console.log(data.Message); // Log the response message
+    } catch (error) {
+      console.error('Error updating task status:', error);
+      // Optionally rollback the UI change if the backend update fails
     }
   };
 
@@ -63,7 +115,7 @@ function MainContent() {
               >
                 <h2>{listId.toUpperCase().replace(/-/g, ' ')}</h2>
                 {tasks[listId].map((item, index) => (
-                  <Draggable key={item} draggableId={item} index={index}>
+                  <Draggable key={item.Id_Activitate} draggableId={item.Id_Activitate.toString()} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
@@ -79,7 +131,7 @@ function MainContent() {
                           ...provided.draggableProps.style,
                         }}
                       >
-                        {item}
+                        {item.Nume}
                       </div>
                     )}
                   </Draggable>
@@ -91,7 +143,8 @@ function MainContent() {
         ))}
       </div>
     </DragDropContext>
-    </div>
+    <CreateTaskButton groupId={groupId} callme={() => refreshGroupList(groupId)}/>
+  </div>
   );
 }
 

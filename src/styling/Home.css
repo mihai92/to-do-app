@@ -3,6 +3,7 @@
     justify-content: left;
     align-items: left;
     height: 100vh;
+    width: 100%;
 }
 
 .toplabel{
@@ -75,27 +76,25 @@
     color: black;
 }
 
-#buttonpopup1 {
-
-    align-items: center;
-    margin: 0.2vh;
+.buttonpopup1 {
+    margin: 2px;
     margin-top: 2vh;
     background-color: rgb(51, 204, 255);
     border: none;
+    padding: 1.5vh 5.5vh;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    color: rgb(0, 0, 0);
-    height: 5vh;
-    width: 10rem;
-    text-align: center;
-    text-decoration: none;
     font-size: medium;
+    border-radius: 15px;
+    border-width: 15px;
     transition-duration: 0.4s;
     border: 2px solid rgb(51, 204, 255);
+    color:black;
 }
 
-#buttonpopup1:hover {
+
+.buttonpopup1:hover {
     background-color: white;
     color: black;
 }
@@ -130,5 +129,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.modal{
+    max-height: 90vh;
+    overflow: auto;
 }
 

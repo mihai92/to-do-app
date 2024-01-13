@@ -1,6 +1,6 @@
 /* MainContent.css */
 .main-content {
-  padding-left: 10vw;
+    padding-left: 10vw;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -8,8 +8,9 @@
     padding: 10px;
     overflow: auto;
     width: 75vw; /* Control the max width of the main content area */
-    min-height: 100vh;
+    min-height: 90vh;
     margin: 0 auto; /* This will center the main content if it's less than the max-width */
+    
   }
   
   .column {
@@ -17,7 +18,7 @@
     padding: 8px;
     width: 100%;
     max-width: 20vw;
-    min-height: 200px;
+    height:70vh;
     border-radius: 4px;
   }
   

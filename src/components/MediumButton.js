@@ -1,12 +1,14 @@
 import React from 'react';
-import '../styling/Mediumbutton.css'
+import '../styling/Mediumbutton.css';
 
-const MediumButton = ({ onClick, label }) => {
+// Wrap your component with React.forwardRef
+const MediumButton = React.forwardRef(({ onClick, label }, ref) => {
   return (
-    <button className="medium-button" onClick={onClick}>
+    // Forward the ref to the button element
+    <button className="medium-button" onClick={onClick} ref={ref}>
       {label}
     </button>
   );
-};
+});
 
 export default MediumButton;

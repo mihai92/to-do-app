@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { async } from 'q';
 
 const Register = () => {
+  localStorage.clear();
   const navigate = useNavigate();
 
 const [Nickname, setNickname]=useState("");
@@ -12,7 +13,8 @@ const [DOB, setDOB]=useState("");
 const [PhoneNumber, setPhoneNumber]=useState("");
 const [Password, setPassword]=useState("");
 let userData ={Nickname,Email,DOB,PhoneNumber,Password}
-async function inregistrare(){
+const inregistrare = async (e) =>{
+  e.preventDefault(); // Prevent the default form submission behavior
 const response = await fetch('http://localhost:5000/SignUp', { // Using the endpoint from your backend
         method: 'POST',
         headers: {
@@ -35,7 +37,7 @@ const response = await fetch('http://localhost:5000/SignUp', { // Using the endp
     <div className='wrapper'>
     <div className='register'>
       <h2 className='registration'>Registration</h2>
-      <form>
+      <form onSubmit={inregistrare}>
         <div>
           <input
             className='input'
@@ -50,7 +52,7 @@ const response = await fetch('http://localhost:5000/SignUp', { // Using the endp
         <div>
           <input
             className='input'
-            placeholder="email"
+            placeholder="Email"
             type="email"
             id="email"
             name="email"
@@ -73,9 +75,9 @@ const response = await fetch('http://localhost:5000/SignUp', { // Using the endp
           <input
             className='input'
             placeholder="Date of birth"
-            type="input"
-            id="confirmPassword"
-            name="confirmPassword"
+            type="date"
+            id="DOB"
+            name="DOB"
             onChange={(e)=>setDOB(e.target.value)}
             required
           />
@@ -83,14 +85,14 @@ const response = await fetch('http://localhost:5000/SignUp', { // Using the endp
         <div>
           <input
             className='input'
-            placeholder="phonenumber"
+            placeholder="Phone number"
             type="input"
             onChange={(e)=>setPhoneNumber(e.target.value)}
             required
           />
         </div>
         
-        <button type="submit" className='registerbutton' onClick={inregistrare}>Register</button>
+        <button type="submit" className='registerbutton'>Register</button>
       </form>
     </div>
     </div>
