@@ -3,17 +3,17 @@ const db=Data.getInstance();
 const express = require("express");
 const router = express.Router();
 const { Autentificare } = require("../Middleware/Auth");
-const {VerificareRol}=require("../Middleware/Role");
+
 
 
 
 // Ruta folosita pentru atribuirea unui task cuiva de catre admin
-router.post("/GActivity/:Id_Group/:Id_Membru",Autentificare,VerificareRol, async (req,res)=>{
+router.post("/GActivity/:Id_Group/:Id_Membru",Autentificare, async (req,res)=>{
         try{
             const {Nume,Deadline}=req.body;
             const [query]=await db.execute("INSERT INTO Group_Activity(Id_Group, Id_Membru, Nume, Status,Acceptat, Deadline) Values(?,?,?,?, false, ?)",[req.params.Id_Group,req.params.Id_Membru,Nume,"In progress",Deadline]);
             const [numegrup]=await db.execute("SELECT Nume from Groupt WHERE Id_Group=?",[req.params.Id_Group]);
-            const string="Ai primit un task nou in Grupul "+numegrup[0].Nume;
+            const string="Ai primit un task nou in Grupul "+numegrup[0].Nume+": "+Nume;
             const [query2]=await db.execute("INSERT INTO Notifications(Id_Group, Id_Emitator, Id_Interceptor, Mesaj, Acceptat, Vizibilitate_Acceptat) VALUES(?,?,?,?, false, true)",[req.params.Id_Group, req.auth.id, req.params.Id_Membru,string])
             res.send(200).json({Message:"Activitatea a fost atribuita!"});
         }catch(err){
@@ -39,7 +39,7 @@ router.get("/GActivity/:Id_Group",Autentificare, async (req,res)=>{
 })
 
 
-router.get("/GActivity_Finalizat/:Id_Group",Autentificare,VerificareRol, async(req,res)=>{
+router.get("/GActivity_Finalizat/:Id_Group",Autentificare, async(req,res)=>{
     try{
         const [query]=await db.execute("SELECT * FROM Group_Activity WHERE Status=true AND Id_Group=?",[req.params.Id_Group]);
         res.send(200).json(query);
@@ -88,7 +88,7 @@ router.put("/GActivity_Status/:Id_Activity",Autentificare, async(req,res)=>{
 
 
 // Ruta folosita pentru a sterge un task intr-un grup ca administrator
-router.delete("/GActiviity/:Id_Activity",Autentificare,VerificareRol, async(req,res)=>{
+router.delete("/GActiviity/:Id_Activity",Autentificare, async(req,res)=>{
     try{
         const [query]=await db.execute("DELETE FROM Group_Activity WHERE Id_Activitate=?",[req.params.Id_Activity]);
         res.send(200).json({Message:"Activitatea a fost stearsa!"});
