@@ -12,7 +12,7 @@ try{
     await db.query
     ("CREATE TABLE IF NOT EXISTS GroupT (Id_Group INT AUTO_INCREMENT PRIMARY KEY,        Id_Admin INT,        Nume VARCHAR(250) NOT NULL,        FOREIGN KEY (Id_Admin) REFERENCES Users(Id))");
     await db.query
-    ("CREATE TABLE IF NOT EXISTS Members(Id INT AUTO_INCREMENT PRIMARY KEY, Id_Group INT, Id_Membru INT, FOREIGN KEY(Id_Group) REFERENCES GroupT(Id_Group), FOREIGN KEY(Id_Membru) REFERENCES Users(Id) ) ");
+    ("CREATE TABLE IF NOT EXISTS Members(Id INT AUTO_INCREMENT PRIMARY KEY, Id_Group INT, Id_Membru INT, FOREIGN KEY(Id_Group) REFERENCES GroupT(Id_Group) ON DELETE CASCADE, FOREIGN KEY(Id_Membru) REFERENCES Users(Id) ON DELETE CASCADE ) ");
     await db.query
     ("CREATE TABLE IF NOT EXISTS Group_Activity( Id_Activitate INT AUTO_INCREMENT PRIMARY KEY,  Id_Group INT, Id_Membru INT,    Nume VARCHAR(250) NOT NULL, Status VARCHAR(250) NOT NULL, Deadline DATE, Acceptat BOOLEAN, FOREIGN KEY(Id_Group) REFERENCES Members(Id_Group), FOREIGN KEY (Id_Membru) REFERENCES Members(Id_Membru)   )")
     await db.query

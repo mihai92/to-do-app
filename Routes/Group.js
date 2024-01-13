@@ -19,7 +19,7 @@ router.post("/group",Autentificare,async (req,res)=>{
     }
 })
 
-
+//Ruta folosita pentru a primi membrii dintr-o lista
 router.get("/members/:Id_Group",Autentificare, async(req,res)=>{
     try{
         const[query]=await db.execute("SELECT * FROM Members WHERE Id_Group=?",[req.params.Id_Group]);
@@ -44,7 +44,7 @@ router.get("/people/:Nickname",Autentificare, async (req,res)=>{
 // Ruta folosita pentru a primi o lista cu grupurile din care un utilizator face parte
 router.get("/group",Autentificare,async (req,res)=>{
     try{
-        const [query]=await db.execute("SELECT * FROM GroupT AS g JOIN Members AS m ON g.Id_Group = m.Id_Group       WHERE m.Id_Membru = ?",[req.auth.id]);
+        const [query]=await db.execute("SELECT g.Id_Group, g.Nume, g.Id_Admin FROM GroupT AS g JOIN Members AS m ON g.Id_Group = m.Id_Group       WHERE m.Id_Membru = ?",[req.auth.id]);
         res.status(200).json(query);
     }catch(err){
         res.status(500).json(err);

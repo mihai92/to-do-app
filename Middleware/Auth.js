@@ -6,7 +6,7 @@ async function Autentificare(req,res,next){
     const Headercerere=req.headers.authorization;
     const jeton=Headercerere.split('Bearer ')[1];
     try{
-    if(jeton==null){
+    if(!jeton){
         return res.status(401).json({message:"Acces neautorizat"})
     }
     jwt.verify(jeton,process.env.ACCESS_TOKEN_SECRET,async (err,UserId)=>{

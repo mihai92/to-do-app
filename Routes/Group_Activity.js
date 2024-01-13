@@ -79,7 +79,7 @@ router.put("/GActivity/:Id_Group/:Id_Activity",Autentificare, async(req,res)=>{
 router.put("/GActivity_Status/:Id_Activity",Autentificare, async(req,res)=>{
     try{
         const {Status}=req.body;
-        const [query1]=await db.execute("UPDATE Group_Activity WHERE Id_Activitate=? SET Status=?",[req.params.Id_Activity,Status]);
+        const [query1]=await db.execute("UPDATE Group_Activity SET Status=? WHERE Id_Activitate=?",[Status,req.params.Id_Activity]);
         res.status(200).json({Message:"Statusul activitatii a fost schimbat cu succes"})
     }catch(err){
         res.status(500).json(err);
@@ -88,7 +88,7 @@ router.put("/GActivity_Status/:Id_Activity",Autentificare, async(req,res)=>{
 
 
 // Ruta folosita pentru a sterge un task intr-un grup ca administrator
-router.delete("/GActiviity/:Id_Activity",Autentificare, async(req,res)=>{
+router.delete("/GActivity/:Id_Activity",Autentificare, async(req,res)=>{
     try{
         const [query]=await db.execute("DELETE FROM Group_Activity WHERE Id_Activitate=?",[req.params.Id_Activity]);
         res.send(200).json({Message:"Activitatea a fost stearsa!"});
