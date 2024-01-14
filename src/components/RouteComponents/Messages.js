@@ -8,7 +8,7 @@ var randomColor = require("randomcolor");
 function Messages() {
   const [item, setItem] = useState("");
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("items")) || []
+    JSON.parse(sessionStorage.getItem("items")) || []
   );
 
   const newitem = () => {
@@ -37,7 +37,7 @@ function Messages() {
   };
 
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
+    sessionStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
   const updatePos = (data, index) => {

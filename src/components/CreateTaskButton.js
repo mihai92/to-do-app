@@ -3,7 +3,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../styling/CreateTaskButton.css'
 const url = 'http://localhost:5000/GActivity';
-const token = localStorage.getItem("user-info");
+const token = sessionStorage.getItem("user-info");
 
 function CreateTaskButton({ groupId, callme }) {
     console.log(groupId)

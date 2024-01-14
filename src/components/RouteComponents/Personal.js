@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../styling/Personal.css';
 import EditableSpan from '../TaskName';
 const url = 'http://localhost:5000/Todo';
-const token = localStorage.getItem("user-info");
+const token = sessionStorage.getItem("user-info");
 console.log(token)
 
 

@@ -5,12 +5,13 @@ import { wait } from '@testing-library/user-event/dist/utils';
 
 
 const Login = () => {
-  localStorage.clear();
+  sessionStorage.clear();
   const navigate = useNavigate();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 let userData = {Email,Password}
   const handleLogin = async (e) => {
+    sessionStorage.clear();
     e.preventDefault(); // Prevent the default form submission behavior
     try {
       const response = await fetch('http://localhost:5000/login', {
@@ -25,7 +26,8 @@ let userData = {Email,Password}
 
       if (response.status === 200) {
         console.log('Login successful:', data.token);
-        localStorage.setItem("user-info",data.token);
+        sessionStorage.clear();
+        sessionStorage.setItem("user-info",data.token);
         navigate('/dashboard');
       } else {
         // Handle errors such as invalid credentials

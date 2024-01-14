@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { async } from 'q';
 
 const Register = () => {
-  localStorage.clear();
+  sessionStorage.clear();
   const navigate = useNavigate();
 
 const [Nickname, setNickname]=useState("");

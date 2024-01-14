@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import CreateTaskButton from './CreateTaskButton';
+import TaskPopup from './TaskPopup';
 const url = 'http://localhost:5000/GActivity';
-const token = localStorage.getItem("user-info");
+const token = sessionStorage.getItem("user-info");
 
 function MainContent({ groupId }) {
+  const [selectedTask, setSelectedTask] = useState(null);
   const [tasks, setTasks] = useState({ 'to-do': [], 'in-progress': [], 'in-review': [], 'done': [] });
 
 
@@ -13,7 +15,7 @@ function MainContent({ groupId }) {
     if (groupId) {
       fetchGroupTasks(groupId);
     }
-  }, [groupId]);
+  }, [groupId, selectedTask]);
 
   const refreshGroupList = (groupId) => {
     fetchGroupTasks(groupId)
@@ -34,7 +36,6 @@ function MainContent({ groupId }) {
       }
       const data = await response.json();
       console.log(data)
-      // Here you need to transform the data to fit the tasks state structure
       setTasks(transformDataToTasksState(data));
     } catch (error) {
       console.error('There was an error fetching the tasks:', error);
@@ -96,6 +97,12 @@ function MainContent({ groupId }) {
     }
   };
 
+  const handleTaskClick = (task) => {
+    console.log(task);
+    setSelectedTask(task);
+    fetchGroupTasks(groupId);
+  }
+
   return (<div className='main-content'>
     <DragDropContext onDragEnd={onDragEnd}>
       <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
@@ -130,6 +137,7 @@ function MainContent({ groupId }) {
                           color: 'white',
                           ...provided.draggableProps.style,
                         }}
+                        onClick={() => handleTaskClick(item)}
                       >
                         {item.Nume}
                       </div>
@@ -144,6 +152,7 @@ function MainContent({ groupId }) {
       </div>
     </DragDropContext>
     <CreateTaskButton groupId={groupId} callme={() => refreshGroupList(groupId)}/>
+    {selectedTask && <TaskPopup task={selectedTask} onClose={() => setSelectedTask(null)} />}
   </div>
   );
 }

@@ -7,8 +7,9 @@ import 'reactjs-popup/dist/index.css';
 import NotificationItem from '../NotificationItem';
 const url = 'http://localhost:5000/group';
 const urlNotif = 'http://localhost:5000/notifications';
-const urlResponse = 'http://localhost:5000/inviteResponse';
-const token = localStorage.getItem("user-info");
+const urlResponseGroup = 'http://localhost:5000/inviteResponse';
+const urlResponseTask = "http://localhost:5000/GActivity"
+const token = sessionStorage.getItem("user-info");
 
 
 const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName }) => {
@@ -70,9 +71,10 @@ const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName
     }
   }
 
-  const handleNotificationResponse = async (boolean, id) => {
+  const handleNotificationResponse = async (boolean, id, idActivitate, idGroup, idNotif) => {
+    if(idActivitate == 0){
     try {
-      const response = await fetch(`${urlResponse}/${id}`, {
+      const response = await fetch(`${urlResponseGroup}/${id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -90,6 +92,29 @@ const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName
       }
     } catch (error) {
       console.error('Error updating task status:', error);
+    }}
+    else{
+      try {
+        const response = await fetch(`${urlResponseTask}/${idGroup}/${idActivitate}/${idNotif}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ acceptare: boolean }),
+        });
+        if (response.ok) {
+          console.log("here")
+          fetchNotifications()
+        } else {
+          console.log("vomitdecringe")
+          const data = await response.json();
+          throw new Error(data.message);
+        }
+      } catch (error) {
+        console.error('Error updating task status:', error);
+      }
+
     }
   };
 
@@ -125,6 +150,31 @@ const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName
     setActivePage('groups'); // Use the function passed via props to change the active page
   };
 
+  const handleDeleteGroup = async (groupId, event) => {
+    event.stopPropagation();
+    try {
+      const response = await fetch(`${url}/${groupId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        // Handle successful group deletion here (e.g., update state or perform other actions)
+        console.log('Group deleted successfully.');
+        fetchGroups(); // Refresh the list of groups
+      } else {
+        // Handle errors here (e.g., show an error message)
+        const data = await response.json();
+        console.error(data.Message || 'Error deleting group.');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+    }
+  };
+
   return (
     <div className='home'>
 
@@ -140,8 +190,9 @@ const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName
                     Groups
                   </div>
                   {groups.map((group) => (
-                    <div key={group.Id_Group} className="task-item" onClick={() => handleGroupClick(group.Id_Group, group.Nume)}>
-                      <span>{group.Nume}</span>
+                    <div key={group.Id_Group} className="task-item" onClick={() => handleGroupClick(group.Id_Group, group.Nume)} >
+                      <span >{group.Nume}</span>
+                      <button className='delete-button' onClick={(event) => handleDeleteGroup(group.Id_Group, event)}>Delete group</button>
                     </div>
                   ))}
                   <button className='buttonpopup1' onClick={() => close()}> Back </button>
@@ -181,8 +232,8 @@ const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName
           <NotificationItem
             key={notification.Id}
             message={notification.Mesaj}
-            onAccept={() => handleNotificationResponse(true, notification.Id)}
-            onReject={() => handleNotificationResponse(false, notification.Id)}
+            onAccept={() => handleNotificationResponse(true, notification.Id, notification.Task_Id, notification.Id_Group, notification.Id)}
+            onReject={() => handleNotificationResponse(false, notification.Id, notification.Task_Id, notification.Id_Group, notification.Id)}
           />
         ))}
       </div>
