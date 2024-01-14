@@ -4,7 +4,19 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const db=Data.getInstance();
+const { Autentificare } = require("../Middleware/Auth");
 require('dotenv').config()
+
+
+// In order to discover one's self, one must look inward
+router.get("/me",Autentificare, async(req,res)=>{
+    try{
+        const [query]=await db.execute("SELECT Id, Nickname FROM Users WHERE Id=?",[req.auth.id])
+        res.status(200).json(query);
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
 
 
 router.post("/login", async (req,res)=>{
