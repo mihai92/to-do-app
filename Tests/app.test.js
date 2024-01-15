@@ -54,11 +54,47 @@ describe("Todo_Groups Backend", ()=>{
             )
         })
     })
+
+    it("GET /Todo ---->lista cu activitatile", ()=>{
+        return request(app)
+        .get("/Todo")
+        .set("Authorization", `Bearer ${authToken}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then((response)=>{
+            expect(response.body).toEqual(
+                expect.objectContaining({
+                    Id:expect.any(Number),
+                    Id_User:expect.any(Number),
+                    Nume:expect.any(String),
+                    Status:expect.any(Boolean),
+                    Deadline:expect.any(Date)
+                })
+            )
+        })
+    })
+
+    
+    it("PUT /Todo ---->mesaj:Statusul a fost schimbat cu succes", ()=>{
+        return request(app)
+        .put("/Todo/1")
+        .set("Authorization", `Bearer ${authToken}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then((response)=>{
+            expect(response.body).toEqual(
+                expect.objectContaining({
+                    Message:"Statusul a fost schimbat cu succes"
+                })
+            )
+        })
+    })
+
     
     it("DELETE /Todo ---->mesaj:Activitatea a fost stearsa cu succes", ()=>{
 
         return request(app)
-        .delete("/Todo/6")
+        .delete("/Todo/1")
         .set("Authorization", `Bearer ${authToken}`)
         .expect('Content-Type', /json/)
         .expect(200)
@@ -71,6 +107,26 @@ describe("Todo_Groups Backend", ()=>{
         })
 
     })
+
+
+    it("POST /group  ------>mesaj: Cererea a trecut cu succes",()=>{
+        return request(app)
+        .post("/Todo")
+        .set("Authorization", `Bearer ${authToken}`)
+        .send({
+            Nume:"Un grup"
+        })
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then((response)=>{
+            expect(response.body).toEqual(
+                expect.objectContaining({
+                    Message:"Cererea a trecut cu succes"
+                })
+            )
+        })
+    })
+
 
 
 
