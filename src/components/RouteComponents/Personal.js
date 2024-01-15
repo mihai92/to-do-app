@@ -147,12 +147,12 @@ const Personal = () => {
       <div className="personal-header">Personal Tasks</div>
       <div className="tasks-container">
         {tasks.map((task) => (
-          <div key={task.Id_Activitate} className="task-item">
-            <EditableSpan
+          <div key={task.Id_Activitate} className="task-itempersonal">
+            <EditableSpan  
               text={task.Nume}
-              onTextChange={(newText) => handleUpdateTaskName(task.Id_Activitate, newText)} />
-            <input type="checkbox" checked={task.Status} onChange={() => handleStatusChange(task.Id_Activitate, task.Status)} />
-            <span>{task.Deadline}</span>
+              onTextChange={(newText) => handleUpdateTaskName(task.Id_Activitate, newText)} className="namepersonal"/>
+            <input  type="checkbox" checked={task.Status} onChange={() => handleStatusChange(task.Id_Activitate, task.Status)} className='checkboxpersonal'/>
+            <span className='datepersonal'>{task.Deadline}</span>
             <button onClick={() => handleRemoveTask(task.Id_Activitate)} className="remove-task-btn">X</button>
           </div>
         ))}

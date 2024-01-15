@@ -49,27 +49,36 @@ function CreateTaskButton({ groupId, callme }) {
         <>
             <button onClick={() => setOpen(true)} className="create-task-button">Create Task</button>
             <Popup open={open} closeOnDocumentClick onClose={() => setOpen(false)}>
-                <div className="popup-content">
-                    <h2>Create Task</h2>
+                <div className="popup-content-createtask">
+                <div className="toplabelpopup">
+                    Create new task
+                  </div>
+                  <div className='contentcreatetask'>
                     <input
+                        className='inputcreatetask'
                         type="text"
                         placeholder="Task name"
                         value={taskName}
                         onChange={(e) => setTaskName(e.target.value)}
                     />
                     <input
+                        className='calendarcreatetask'
                         type="date"
                         value={deadline}
                         onChange={(e) => setDeadline(e.target.value)}
                     />
                     <input
+                        className='inputcreatetask'
                         type="number"
                         placeholder="Member ID"
                         value={memberId}
                         onChange={(e) => setMemberId(e.target.value)}
                     />
-                    <button onClick={handleCreateTask}>Submit</button>
-                    <button onClick={() => setOpen(false)}>Cancel</button>
+                    </div>
+                    <div className='buttonspopup'>
+                    <button className='buttonpopup1' onClick={handleCreateTask}>Submit</button>
+                    <button className='buttonpopup1' onClick={() => setOpen(false)}>Cancel</button>
+                    </div>
                 </div>
             </Popup>
         </>

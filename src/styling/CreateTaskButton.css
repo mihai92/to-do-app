@@ -1,20 +1,123 @@
+
 .create-task-button {
-    background-color: #456C86;
-    position: absolute;
-    bottom: 0;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 10px;
-    display: block;
-    text-align: center;
-    transition: background-color 0.3s;
-    left: 0;
-  }
-  
-  .create-task-button:hover {
-    background-color: #263B4A; /* Darker shade for hover state */
-  }
+  position: absolute;
+  bottom: 0;
+  color: white;
+  display: flex;
+  left: 0.55vh;
+  margin: 1.1vh;
+  margin-top: 2vh;
+  background-color: rgb(51, 204, 255);
+  color: black;
+  font-size:  medium;
+  transition-duration: 0.4s;
+  border: 2px solid rgb(51, 204, 255);
+  align-items: center;
+  justify-content: center;
+  height: 5.69vh;
+  width: 9rem;
+  font-weight: bold;
+}
+
+.create-task-button:hover {
+  background-color: white;
+  color:black;
+}
+
+
+
+.toplabelpopup{
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70vh;
+  color: black;
+  font-weight: bold;
+  align-items: center;
+  background-color: rgb(51, 204, 255);
+  margin: auto;
+  width: 25%;
+  margin-bottom: 3vh;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+
+.buttonpopup1 {
+  margin: 2px;
+  background-color: rgb(51, 204, 255);
+  border: none;
+  padding: 1.5vh 5.5vh;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: medium;
+  border-radius: 15px;
+  border-width: 15px;
+  transition-duration: 0.4s;
+  border: 2px solid rgb(51, 204, 255);
+  color:black;
+}
+
+
+.buttonpopup1:hover {
+  background-color: white;
+  color: black;
+}
+
+
+.buttonspopup {
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toplabelpopup{
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50vh;
+  color: black;
+  font-weight: bold;
+  align-items: center;
+  background-color: rgb(51, 204, 255);
+  margin: auto;
+  width: 25%;
+  margin-bottom: 3vh;
+}
+
+.inputcreatetask {
+  margin-left:2px;
+  width: 20rem;
+  height: 3.9vh;
+  font-size:medium;
+  margin-bottom: 2vh;
+}
+
+.calendarcreatetask{
+  width: 20.11rem;
+  height: 4vh;
+  font-size:large;
+  margin-bottom: 2vh;
+}
+
+
+.contentcreatetask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.modal{
+  max-height: 90vh;
+  overflow: auto;
+}
+
+
+
+
+

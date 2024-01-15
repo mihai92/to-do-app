@@ -30,13 +30,15 @@ const TaskPopup = ({ task, onClose }) => {
       };
 
   return (
-    <div className="task-popup">
-      <div className="popup-content">
-        <p><strong>Numele taskului:</strong> {task.Nume}</p>
-        <p><strong>Deadline:</strong> {task.Deadline.split('T')[0]}</p>
-        <p><strong>Membru:</strong> {task.Nickname}</p>
-        <button onClick={() => handleDelete()}>Delete Task</button>
-        <button onClick={onClose}>Close</button>
+    <div className="modaltaskpopup">
+      <div className="popup-content-task">
+        <p className='label-task'><strong><p className='label-taskinside1'>Numele taskului:</p></strong><p className='label-taskinside2'> {task.Nume}</p></p>
+        <p className='label-task'><strong><p className='label-taskinside1'>Deadline:</p></strong><p className='label-taskinside2'> {task.Deadline.split('T')[0]}</p></p>
+        <p className='label-task'><strong><p className='label-taskinside1'>Membru:</p></strong><p className='label-taskinside2'> {task.Nickname}</p></p>
+        <div className="buttonspopuptask">
+        <button className='buttonpopuptask' onClick={() => handleDelete()}>Delete Task</button>
+        <button className='buttonpopuptask' onClick={onClose}>Close</button>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../styling/Personal.css';
 
 const EditableSpan = ({ text, onTextChange }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -25,6 +26,7 @@ const EditableSpan = ({ text, onTextChange }) => {
   
     return isEditing ? (
       <input
+        className='namepersonal'
         type="text"
         value={editableText}
         onChange={handleInputChange}
@@ -33,7 +35,7 @@ const EditableSpan = ({ text, onTextChange }) => {
         autoFocus
       />
     ) : (
-      <span onClick={handleSpanClick}>{text}</span>
+      <span className="namepersonal" onClick={handleSpanClick}>{text}</span>
     );
   };
 

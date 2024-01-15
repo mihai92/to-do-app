@@ -1,0 +1,37 @@
+
+.notification-item{
+    display: flex;
+    flex-direction: left;
+    background-color: white;
+    bottom:1vh;
+    right: 2rem;
+    height: 4vh;
+    width: 40rem;
+    text-align: center;
+    font-size: medium;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh;
+    margin-top:1px;
+    border-radius: 11px;
+}
+
+.button{
+    margin-left:10px;
+    background-color: rgb(51, 204, 255);
+    border: none;
+    padding: .5vh 1vh;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: medium;
+    border-radius: 15px;
+    border-width: 15px;
+    transition-duration: 0.4s;
+    border: 2px solid rgb(51, 204, 255);
+    color:black;
+}
+.button:hover{
+    background-color: white;
+    color: black;
+  }

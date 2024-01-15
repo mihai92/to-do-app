@@ -4,10 +4,12 @@ import '../styling/Notifications.css';
 
 const NotificationItem = ({message, onAccept, onReject}) =>{
     return(
+        <div className='notification-container'>
         <div className='notification-item'>
             <p>{message}</p>
-            <button onClick={() => onAccept()}>Accept</button>
-            <button onClick={() => onReject()}>Reject</button>
+            <button className='button' onClick={() => onAccept()}>Accept</button>
+            <button className='button' onClick={() => onReject()}>Reject</button>
+        </div>
         </div>
     );
 };

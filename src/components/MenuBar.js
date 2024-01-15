@@ -1,12 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import '../styling/MenuBar.css'
 import MenuButton from "./MenuButton";
 const url = "http://localhost:5000/me"
 const token = sessionStorage.getItem('user-info')
 
+
 const buttonsConfig = {
   personal: ['Home', 'Message board'],
-  groups: ['Home', 'Personal tasks', 'Message board', 'Create task'],
+  groups: ['Home', 'Personal tasks', 'Message board'],
   home: ['Personal tasks', 'Message board'],
   messages: ['Home', 'Personal tasks']
 };
@@ -16,6 +18,13 @@ const buttonsConfig = {
 
 const MenuBar = ({ activePage, setActivePage }) => {
   const [userData, setUserData] = useState("");
+
+  const navigate = useNavigate();
+
+  function delogare(){
+    navigate('/login');
+    localStorage.clear();
+  }
 
   const fetchUserData = async () => {
     try {
@@ -85,6 +94,7 @@ const MenuBar = ({ activePage, setActivePage }) => {
           onClick={clickHandlers[buttonLabel.replace(/\s/g, "")]}
         />
       ))}
+      <button className= 'logout' onClick={()=>delogare()}> Log out </button>
     </div>
   );
 };

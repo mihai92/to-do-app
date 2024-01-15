@@ -135,7 +135,7 @@ const GroupMembers = ({ groupId, groupName }) => {
                         autoFocus
                     />
                 ) : (
-                    <span>{newGroupName}</span>
+                    <span className="textgrouptop">{newGroupName}</span>
                 )}
             </div>
             {members.map((member) => (
@@ -144,16 +144,23 @@ const GroupMembers = ({ groupId, groupName }) => {
             <MenuButton cclass="AddNewMember" label="AddNewMember" onClick={() => setOpen(true)} />
 
             <Popup open={open} closeOnDocumentClick onClose={() => setOpen(false)}>
-                <div className="popup-content">
-                    <h2>Send Member Invitation</h2>
+                <div className='modalgroupmembers'>
+                    <div className="toplabelpopupgroupmembers">
+                    Send member invitation
+                  </div>
+                  <div className='content'>
                     <input
+                        className='input'
                         type="nickname"
                         placeholder="Nickname"
                         value={nickname}
                         onChange={(e) => setNickname(e.target.value)}
                     />
-                    <button onClick={() => handleSendInvitation(nickname)}>Send Invitation</button>
-                    <button onClick={() => setOpen(false)}>Cancel</button>
+                </div>
+                    <div className='buttonspopup'>
+                    <button className='buttonpopup1'onClick={() => handleSendInvitation(nickname)}>Send Invitation</button>
+                    <button className='buttonpopup1'onClick={() => setOpen(false)}>Cancel</button>
+                    </div>
                 </div>
             </Popup>
         </div>

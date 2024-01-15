@@ -25,14 +25,13 @@
     min-height: 70vh;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* Allows tasks to wrap to the next line */
-    gap: 20px; /* Adjust the space between tasks */
-    margin-bottom: 5px; /* Space below the task container */
+    flex-wrap: wrap; 
+    gap: 20px; 
+    margin-bottom: 5px; 
     color:black;
   }
   
   .task-item {
-
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -42,6 +41,36 @@
     height: 10vh;
     margin-top: 20vh;
     background-color: white;
+  }
+
+  .task-itempersonal {
+    padding: 35px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    margin-top: 20vh;
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+  }
+  
+  .datepersonal{
+    margin-top: 1vh;
+    font-size: 10px;
+  }
+
+  .namepersonal{
+    border-bottom: 2px solid rgb(51, 204, 255);
+    font-weight: bold;
+  }
+
+  .checkboxpersonal{
+    margin-top: 2vh;
+    width: 100px;
+    background-color: #eee;
   }
   
   .task-checkbox {
@@ -81,7 +110,7 @@
   }
   
   .remove-task-btn {
-    margin-left: 1vh;
+    margin-top: 1vh;
     padding: 4px 8px;
     background: #FF4A4A;
     color: white;

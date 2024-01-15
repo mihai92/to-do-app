@@ -185,13 +185,13 @@ const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName
           <Popup trigger={<Mediumbutton label="Groups" id='button1'></Mediumbutton>} modal onOpen={fetchGroups} nested>
             {
               close => (
-                <div className='modal'>
+                <div className='modalgroups'>
                   <div className="toplabelpopup">
                     Groups
                   </div>
                   {groups.map((group) => (
-                    <div key={group.Id_Group} className="task-item" onClick={() => handleGroupClick(group.Id_Group, group.Nume)} >
-                      <span >{group.Nume}</span>
+                    <div key={group.Id_Group} className="task-itemgroups" onClick={() => handleGroupClick(group.Id_Group, group.Nume)} >
+                      <span className='numegrup' >{group.Nume}</span>
                       <button className='delete-button' onClick={(event) => handleDeleteGroup(group.Id_Group, event)}>Delete group</button>
                     </div>
                   ))}
@@ -227,7 +227,8 @@ const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName
           </Popup>
         </div>
       </div>
-      <div className='notifications-container'>
+      <div className='notification-container'>
+      <div>
         {notifications.map((notification) => (
           <NotificationItem
             key={notification.Id}
@@ -236,6 +237,7 @@ const Home = ({ setActivePage = "home", setSelectedGroupId, setSelectedGroupName
             onReject={() => handleNotificationResponse(false, notification.Id, notification.Task_Id, notification.Id_Group, notification.Id)}
           />
         ))}
+      </div>
       </div>
     </div>
   );
