@@ -3,6 +3,7 @@ const db=Data.getInstance();
 const express = require("express");
 const router = express.Router();
 const { Autentificare } = require("../Middleware/Auth");
+const { VerificareRol }= require("../Middleware/Role");
 
 
 
@@ -36,7 +37,7 @@ router.get("/members/:Id_Group",Autentificare, async(req,res)=>{
 
 
 //Ruta folosita pentru a cauta un utilizator in momentul in care acesta trebuie adaugat 
-router.get("/people/:Nickname",Autentificare, async (req,res)=>{
+router.get("/people/:Nickname",Autentificare, VerificareRol, async (req,res)=>{
     try{
         const [query]=await db.execute("SELECT Id,Nickname FROM Users WHERE Nickname=?",[req.params.Nickname]);
         res.status(200).json(query);
@@ -57,7 +58,7 @@ router.get("/group",Autentificare,async (req,res)=>{
 })
 
 //Ruta folosita pentru a sterge un membru din grup
-router.delete("/member/:Id_Group/:Id_Membru", Autentificare, async(req,res)=>{
+router.delete("/member/:Id_Group/:Id_Membru", Autentificare, VerificareRol, async(req,res)=>{
     try{
         const [query]=await db.execute("DELETE FROM Members WHERE Id_Group=? AND Id_Membru=?",[req.params.Id_Group,req.params.Id_Membru])
         res.status(200).json({Message:"Utilizatorul a fost sters cu succes"});
@@ -68,7 +69,7 @@ router.delete("/member/:Id_Group/:Id_Membru", Autentificare, async(req,res)=>{
 
 
 // Ruta folosita pentru a sterge un grup
-router.delete("/group/:Id_Group", Autentificare, async(req,res)=>{
+router.delete("/group/:Id_Group", Autentificare,VerificareRol, async(req,res)=>{
     try{
         const [query]=await db.execute("DELETE FROM GroupT WHERE Id_Group=?",[req.params.Id_Group]);
         res.status(200).json({Message:"Grupul a fost sters cu succes"});
@@ -79,7 +80,7 @@ router.delete("/group/:Id_Group", Autentificare, async(req,res)=>{
 
 
 // Ruta folosita pentru a schimba numele unui grup
-router.put("/group/:Id_Group", Autentificare, async(req,res)=>{
+router.put("/group/:Id_Group", Autentificare, VerificareRol, async(req,res)=>{
     const {Nume}=req.body;
     try{
         const [query]=await db.execute("UPDATE GroupT SET Nume=? WHERE Id_Group=?",[Nume,req.params.Id_Group]);

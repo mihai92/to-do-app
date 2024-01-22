@@ -3,10 +3,10 @@ const db=Data.getInstance();
 const express = require("express");
 const router = express.Router();
 const { Autentificare } = require("../Middleware/Auth");
-
+const { VerificareRol }= require("../Middleware/Role");
 
 // Ruta folosita pentru trimiterea unei invitatii pentru un grup
-router.post("/invite/:GroupId/:Nickname",Autentificare,async (req,res)=>{
+router.post("/invite/:GroupId/:Nickname",Autentificare,VerificareRol,async (req,res)=>{
     try{
         const [queryDupaNickname]=await db.execute("SELECT Id FROM Users WHERE Nickname=?",[req.params.Nickname])
         const [verificare]=await db.execute("SELECT * FROM Members WHERE Id_Membru=? AND Id_Group=?",[queryDupaNickname[0].Id,req.params.GroupId]);

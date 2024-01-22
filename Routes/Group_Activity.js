@@ -3,12 +3,12 @@ const db=Data.getInstance();
 const express = require("express");
 const router = express.Router();
 const { Autentificare } = require("../Middleware/Auth");
-
+const { VerificareRol }= require("../Middleware/Role");
 
 
 
 // Ruta folosita pentru atribuirea unui task cuiva de catre admin
-router.post("/GActivity/:Id_Group/:Id_Membru",Autentificare, async (req,res)=>{
+router.post("/GActivity/:Id_Group/:Id_Membru",Autentificare, VerificareRol, async (req,res)=>{
     try{
         const {Nume,Deadline}=req.body;
         if(req.params.Id_Membru==req.auth.id){
@@ -47,9 +47,10 @@ router.get("/GActivity/:Id_Group", Autentificare, async (req, res) => {
 });
 
 
+//Ruta folosita pentru a afisa activitatile finalizate
 router.get("/GActivity_Finalizat/:Id_Group",Autentificare, async(req,res)=>{
     try{
-        const [query]=await db.execute("SELECT * FROM Group_Activity WHERE Status=true AND Id_Group=?",[req.params.Id_Group]);
+        const [query]=await db.execute("SELECT * FROM Group_Activity WHERE Status=Done AND Id_Group=?",[req.params.Id_Group]);
         res.send(200).json(query);
     }catch(err){
         res.send(500).json(err);
@@ -98,7 +99,7 @@ router.put("/GActivity_Status/:Id_Activity",Autentificare, async(req,res)=>{
 
 
 // Ruta folosita pentru a sterge un task intr-un grup ca administrator
-router.delete("/GActivity/:Id_Activity",Autentificare, async(req,res)=>{
+router.delete("/GActivity/:Id_Activity",Autentificare, VerificareRol, async(req,res)=>{
     try{
         const [query]=await db.execute("DELETE FROM Group_Activity WHERE Id_Activitate=?",[req.params.Id_Activity]);
         res.status(200).json({Message:"Activitatea a fost stearsa!"});
