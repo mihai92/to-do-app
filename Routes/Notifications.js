@@ -48,7 +48,7 @@ router.put("/notifications",Autentificare, async(req,res)=>{
 })
 
 
-// Ruta folosita pentru acceptarea/respingerea unei notificari(orice tip de notificare si de grup si de task)
+// Ruta folosita pentru acceptarea/respingerea unei notificarile de tip invitatie
 router.put('/inviteResponse/:InviteId',Autentificare, async(req,res)=>{
     const {bool}=req.body;
     const [query3]=await db.execute("SELECT Groupt.Id_Group, Groupt.Id_Admin FROM Groupt JOIN Notifications ON GroupT.Id_Group=Notifications.Id_Group WHERE Notifications.Id=?",[req.params.InviteId]);
